@@ -13,7 +13,13 @@ public class cameraController : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		if(bird != null){
-			transform.position = new Vector3(bird.position.x,0,-10);
+			//transform.position = new Vector3(bird.position.x,0,-10);
 		}
+
+		transform.position += Vector3.right*gameController.instance.forwardSpeed*Time.deltaTime;
+
+	}
+
+	void FixedUpdate(){
 	}
 }
