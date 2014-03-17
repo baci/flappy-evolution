@@ -12,7 +12,7 @@ public class flappyAI : MonoBehaviour {
 	// Update is called once per frame
 	void FixedUpdate () {
 		float chance = Random.Range(0,100);
-		if(chance < 10){
+		if(chance < 5){
 			BC.Flap();
 		}
 	}
