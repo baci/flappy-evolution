@@ -1,9 +1,13 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\cameraController.cs">
     <Files>
-      <File FileName="Assets\Scripts\birdController.cs" Line="21" Column="62" />
-      <File FileName="Assets\Scripts\cameraController.cs" Line="15" Column="57" />
+      <File FileName="Assets\Scripts\birdController.cs" Line="67" Column="4" />
+      <File FileName="Assets\Scripts\cameraController.cs" Line="19" Column="90" />
+      <File FileName="Assets\Scripts\gameController.cs" Line="24" Column="25" />
+      <File FileName="Assets\Scripts\pipeGenerator.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\pipeController.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\flappyAI.cs" Line="13" Column="12" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

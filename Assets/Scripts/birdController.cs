@@ -3,9 +3,11 @@ using System.Collections;
 
 public class birdController : MonoBehaviour {
 
-	public float forwardSpeed;
+	//public float forwardSpeed;
 
 	public float flapForce;
+
+	public int points {get;private set;}
 
 	bool dead;
 
@@ -24,10 +26,10 @@ public class birdController : MonoBehaviour {
 			destroyMe();
 		}
 
-		transform.right = rigidbody2D.velocity;
+		transform.right = rigidbody2D.velocity+new Vector2(25,0);
 
 		if(!dead){
-			rigidbody2D.velocity = new Vector2(forwardSpeed,rigidbody2D.velocity.y);
+			rigidbody2D.velocity = new Vector2(gameController.instance.forwardSpeed,rigidbody2D.velocity.y);
 		}
 	}
 
@@ -37,15 +39,30 @@ public class birdController : MonoBehaviour {
 		}
 	}
 
+
+
 	void destroyMe(){
 		Destroy(gameObject);
 	}
 
 	void OnCollisionEnter2D(Collision2D col){
 		//print ("HELOP");
-		if(col.gameObject.tag == "Pipe"){
+		if(col.gameObject.tag == "Pipe" || col.gameObject.tag == "Ground"){
 			dead = true;
 			collider2D.isTrigger = true;
 		}
 	}
+
+	void OnTriggerEnter2D(Collider2D col){
+		if(col.tag =="PointTrigger"){
+			print("TEST");
+			points ++;
+		}
+	}
+
+	/*
+	void OnGUI(){
+		GUI.Label(new Rect(Screen.width/2-25,20,150,20), "POINTS "+points);
+	}
+	*/
 }

@@ -48,7 +48,10 @@
   <ItemGroup>
      <Compile Include="Assets\Scripts\birdController.cs" />
      <Compile Include="Assets\Scripts\cameraController.cs" />
+     <Compile Include="Assets\Scripts\flappyAI.cs" />
      <Compile Include="Assets\Scripts\gameController.cs" />
+     <Compile Include="Assets\Scripts\pipeController.cs" />
+     <Compile Include="Assets\Scripts\pipeGenerator.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
