@@ -55,7 +55,7 @@ public class birdController : MonoBehaviour {
 
 	void OnTriggerEnter2D(Collider2D col){
 		if(col.tag =="PointTrigger"){
-			print("TEST");
+			//print("TEST");
 			points ++;
 		}
 	}
