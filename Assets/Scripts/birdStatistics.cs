@@ -25,6 +25,11 @@ public class birdStatistics : MonoBehaviour {
 	void Start () {
 	
 	}
+
+	public void Clear(){
+		Scores = new float[Scores.Length];
+		Distances = new float[Distances.Length];
+	}
 	
 	// Update is called once per frame
 	void Update () {
