@@ -34,6 +34,7 @@ using SharpNeat.Phenomes;
 using SharpNeat.DistanceMetrics;
 using SharpNeat.SpeciationStrategies;
 using System.Xml;
+using System.Runtime.InteropServices;
 
 
 /// <summary>
@@ -46,182 +47,186 @@ using System.Xml;
 /// </summary>
 public abstract class SimpleNeatExperiment /*: INeatExperiment*/
 {
-NeatEvolutionAlgorithmParameters _eaParams;
-NeatGenomeParameters _neatGenomeParams;
-string _name;
-int _populationSize;
-int _specieCount;
-NetworkActivationScheme _activationScheme;
-string _complexityRegulationStr;
-int? _complexityThreshold;
-string _description;
-
-#region Abstract properties that subclasses must implement
-public abstract IPhenomeEvaluator<IBlackBox> PhenomeEvaluator { get; }
-public abstract int InputCount { get; }
-public abstract int OutputCount { get; }
-public abstract bool EvaluateParents { get; }
-#endregion
+	NeatEvolutionAlgorithmParameters _eaParams;
+	NeatGenomeParameters _neatGenomeParams;
+	string _name;
+	int _populationSize;
+	int _specieCount;
+	NetworkActivationScheme _activationScheme;
+	string _complexityRegulationStr;
+	int? _complexityThreshold;
+	string _description;
 
 
 
-#region INeatExperiment Members
-public string Description
-{
-    get { return _description; }
-}
+	#region Abstract properties that subclasses must implement
+	public abstract IPhenomeEvaluator<IBlackBox> PhenomeEvaluator { get; }
+	public abstract int InputCount { get; }
+	public abstract int OutputCount { get; }
+	public abstract bool EvaluateParents { get; }
+	#endregion
 
-public string Name
-{
-    get { return _name; }
-}
 
-/// <summary>
-/// Gets the default population size to use for the experiment.
-/// </summary>
-public int DefaultPopulationSize
-{
-    get { return _populationSize; }
-}
 
-/// <summary>
-/// Gets the NeatEvolutionAlgorithmParameters to be used for the experiment. Parameters on this object can be 
-/// modified. Calls to CreateEvolutionAlgorithm() make a copy of and use this object in whatever state it is in 
-/// at the time of the call.
-/// </summary>
-public NeatEvolutionAlgorithmParameters NeatEvolutionAlgorithmParameters
-{
-    get { return _eaParams; }
-}
+	#region INeatExperiment Members
+	public string Description
+	{
+	    get { return _description; }
+	}
 
-/// <summary>
-/// Gets the NeatGenomeParameters to be used for the experiment. Parameters on this object can be modified. Calls
-/// to CreateEvolutionAlgorithm() make a copy of and use this object in whatever state it is in at the time of the call.
-/// </summary>
-public NeatGenomeParameters NeatGenomeParameters
-{
-    get { return _neatGenomeParams; }
-}
+	public string Name
+	{
+	    get { return _name; }
+	}
 
-/// <summary>
-/// Initialize the experiment with some optional XML configutation data.
-/// </summary>
-public void Initialize(string name, XmlElement xmlConfig)
-{
-    _name = name;
-    _populationSize = XmlUtils.GetValueAsInt(xmlConfig, "PopulationSize");
-    _specieCount = XmlUtils.GetValueAsInt(xmlConfig, "SpecieCount");
-    _activationScheme = ShittyFunctions.CreateActivationScheme(xmlConfig, "Activation");
-    _complexityRegulationStr = XmlUtils.TryGetValueAsString(xmlConfig, "ComplexityRegulationStrategy");
-    _complexityThreshold = XmlUtils.TryGetValueAsInt(xmlConfig, "ComplexityThreshold");
-    _description = XmlUtils.TryGetValueAsString(xmlConfig, "Description");
+	/// <summary>
+	/// Gets the default population size to use for the experiment.
+	/// </summary>
+	public int DefaultPopulationSize
+	{
+	    get { return _populationSize; }
+	}
 
-    _eaParams = new NeatEvolutionAlgorithmParameters();
-    _eaParams.SpecieCount = _specieCount;
-    _neatGenomeParams = new NeatGenomeParameters();
-}
+	/// <summary>
+	/// Gets the NeatEvolutionAlgorithmParameters to be used for the experiment. Parameters on this object can be 
+	/// modified. Calls to CreateEvolutionAlgorithm() make a copy of and use this object in whatever state it is in 
+	/// at the time of the call.
+	/// </summary>
+	public NeatEvolutionAlgorithmParameters NeatEvolutionAlgorithmParameters
+	{
+	    get { return _eaParams; }
+	}
 
-/// <summary>
-/// Load a population of genomes from an XmlReader and returns the genomes in a new list.
-/// The genome2 factory for the genomes can be obtained from any one of the genomes.
-/// </summary>
-public List<NeatGenome> LoadPopulation(XmlReader xr)
-{
-    return NeatGenomeUtils.LoadPopulation(xr, false, this.InputCount, this.OutputCount);
-		//TODO: This class does not exist. Find an alternate dimension where it exists.
-		//It is not even to create this from scratch because it does not exist to be taken as reference.
-}
+	/// <summary>
+	/// Gets the NeatGenomeParameters to be used for the experiment. Parameters on this object can be modified. Calls
+	/// to CreateEvolutionAlgorithm() make a copy of and use this object in whatever state it is in at the time of the call.
+	/// </summary>
+	public NeatGenomeParameters NeatGenomeParameters
+	{
+	    get { return _neatGenomeParams; }
+	}
 
-/// <summary>
-/// Save a population of genomes to an XmlWriter.
-/// </summary>
-public void SavePopulation(XmlWriter xw, IList<NeatGenome> genomeList)
-{
-    // Writing node IDs is not necessary for NEAT.
-    NeatGenomeXmlIO.WriteComplete(xw, genomeList, false);
-}
+	/// <summary>
+	/// Initialize the experiment with some optional XML configutation data.
+	/// </summary>
+	public void Initialize(string name, XmlElement xmlConfig)
+	{
+	    _name = name;
+	    _populationSize = XmlUtils.GetValueAsInt(xmlConfig, "PopulationSize");
+	    _specieCount = XmlUtils.GetValueAsInt(xmlConfig, "SpecieCount");
+	    _activationScheme = ShittyFunctions.CreateActivationScheme(xmlConfig, "Activation");
+	    _complexityRegulationStr = XmlUtils.TryGetValueAsString(xmlConfig, "ComplexityRegulationStrategy");
+	    _complexityThreshold = XmlUtils.TryGetValueAsInt(xmlConfig, "ComplexityThreshold");
+	    _description = XmlUtils.TryGetValueAsString(xmlConfig, "Description");
 
-/// <summary>
-/// Create a genome2 factory for the experiment.
-/// Create a genome2 factory with our neat genome2 parameters object and the appropriate number of input and output neuron genes.
-/// </summary>
-public IGenomeFactory<NeatGenome> CreateGenomeFactory()
-{
-    return new NeatGenomeFactory(InputCount, OutputCount, _neatGenomeParams);
-}
+	    _eaParams = new NeatEvolutionAlgorithmParameters();
+	    _eaParams.SpecieCount = _specieCount;
+	    _neatGenomeParams = new NeatGenomeParameters();
+	}
 
-/// <summary>
-/// Create and return a NeatEvolutionAlgorithm object ready for running the NEAT algorithm/search. Various sub-parts
-/// of the algorithm are also constructed and connected up.
-/// This overload requires no parameters and uses the default population size.
-/// </summary>
-public NeatEvolutionAlgorithm<NeatGenome> CreateEvolutionAlgorithm()
-{
-    return CreateEvolutionAlgorithm(DefaultPopulationSize);
-}
+	[DllImport ("SharpNeatDomains")]
+	public static extern List<NeatGenome> LoadPopulation(XmlReader xr, bool x, int inCnt, int outCnt);
 
-/// <summary>
-/// Create and return a NeatEvolutionAlgorithm object ready for running the NEAT algorithm/search. Various sub-parts
-/// of the algorithm are also constructed and connected up.
-/// This overload accepts a population size parameter that specifies how many genomes to create in an initial randomly
-/// generated population.
-/// </summary>
-public NeatEvolutionAlgorithm<NeatGenome> CreateEvolutionAlgorithm(int populationSize)
-{
-    // Create a genome2 factory with our neat genome2 parameters object and the appropriate number of input and output neuron genes.
-    IGenomeFactory<NeatGenome> genomeFactory = CreateGenomeFactory();
+	/// <summary>
+	/// Load a population of genomes from an XmlReader and returns the genomes in a new list.
+	/// The genome2 factory for the genomes can be obtained from any one of the genomes.
+	/// </summary>
+	public List<NeatGenome> LoadPopulation(XmlReader xr)
+	{
 
-    // Create an initial population of randomly generated genomes.
-    List<NeatGenome> genomeList = genomeFactory.CreateGenomeList(populationSize, 0);
+			return LoadPopulation(xr, false, this.InputCount, this.OutputCount);
+	}
 
-    // Create evolution algorithm.
-    return CreateEvolutionAlgorithm(genomeFactory, genomeList);
-}
+	/// <summary>
+	/// Save a population of genomes to an XmlWriter.
+	/// </summary>
+	public void SavePopulation(XmlWriter xw, IList<NeatGenome> genomeList)
+	{
+	    // Writing node IDs is not necessary for NEAT.
+	    NeatGenomeXmlIO.WriteComplete(xw, genomeList, false);
+	}
 
-/// <summary>
-/// Create and return a NeatEvolutionAlgorithm object ready for running the NEAT algorithm/search. Various sub-parts
-/// of the algorithm are also constructed and connected up.
-/// This overload accepts a pre-built genome2 population and their associated/parent genome2 factory.
-/// </summary>
-public NeatEvolutionAlgorithm<NeatGenome> CreateEvolutionAlgorithm(IGenomeFactory<NeatGenome> genomeFactory, List<NeatGenome> genomeList)
-{
-    // Create distance metric. Mismatched genes have a fixed distance of 10; for matched genes the distance is their weigth difference.
-    IDistanceMetric distanceMetric = new ManhattanDistanceMetric(1.0, 0.0, 10.0);
-    ISpeciationStrategy<NeatGenome> speciationStrategy = new KMeansClusteringStrategy<NeatGenome>(distanceMetric);
+	/// <summary>
+	/// Create a genome2 factory for the experiment.
+	/// Create a genome2 factory with our neat genome2 parameters object and the appropriate number of input and output neuron genes.
+	/// </summary>
+	public IGenomeFactory<NeatGenome> CreateGenomeFactory()
+	{
+	    return new NeatGenomeFactory(InputCount, OutputCount, _neatGenomeParams);
+	}
 
-    // Create complexity regulation strategy.
-	IComplexityRegulationStrategy complexityRegulationStrategy = new DefaultComplexityRegulationStrategy(/*_complexityRegulationStr*/ComplexityCeilingType.Relative, System.Convert.ToDouble(_complexityThreshold));//TODO: Relative: verify if not broken
-	// ExperimentUtils.CreateComplexityRegulationStrategy(_complexityRegulationStr, _complexityThreshold);
+	/// <summary>
+	/// Create and return a NeatEvolutionAlgorithm object ready for running the NEAT algorithm/search. Various sub-parts
+	/// of the algorithm are also constructed and connected up.
+	/// This overload requires no parameters and uses the default population size.
+	/// </summary>
+	public NeatEvolutionAlgorithm<NeatGenome> CreateEvolutionAlgorithm()
+	{
+	    return CreateEvolutionAlgorithm(DefaultPopulationSize);
+	}
 
-    // Create the evolution algorithm.
-    NeatEvolutionAlgorithm<NeatGenome> ea = new NeatEvolutionAlgorithm<NeatGenome>(_eaParams, speciationStrategy, complexityRegulationStrategy);
+	/// <summary>
+	/// Create and return a NeatEvolutionAlgorithm object ready for running the NEAT algorithm/search. Various sub-parts
+	/// of the algorithm are also constructed and connected up.
+	/// This overload accepts a population size parameter that specifies how many genomes to create in an initial randomly
+	/// generated population.
+	/// </summary>
+	public NeatEvolutionAlgorithm<NeatGenome> CreateEvolutionAlgorithm(int populationSize)
+	{
+	    // Create a genome2 factory with our neat genome2 parameters object and the appropriate number of input and output neuron genes.
+	    IGenomeFactory<NeatGenome> genomeFactory = CreateGenomeFactory();
 
-    // Create genome2 decoder.
-    IGenomeDecoder<NeatGenome, IBlackBox> genomeDecoder = new NeatGenomeDecoder(_activationScheme);
+	    // Create an initial population of randomly generated genomes.
+	    List<NeatGenome> genomeList = genomeFactory.CreateGenomeList(populationSize, 0);
 
-    // Create a genome2 list evaluator. This packages up the genome2 decoder with the genome2 evaluator.
-    IGenomeListEvaluator<NeatGenome> genomeListEvaluator = new SerialGenomeListEvaluator<NeatGenome, IBlackBox>(genomeDecoder, PhenomeEvaluator);
+	    // Create evolution algorithm.
+	    return CreateEvolutionAlgorithm(genomeFactory, genomeList);
+	}
 
-    // Wrap the list evaluator in a 'selective' evaulator that will only evaluate new genomes. That is, we skip re-evaluating any genomes
-    // that were in the population in previous generations (elite genomes). This is determiend by examining each genome2's evaluation info object.
-    if(!EvaluateParents)
-        genomeListEvaluator = new SelectiveGenomeListEvaluator<NeatGenome>(genomeListEvaluator,
-                                 SelectiveGenomeListEvaluator<NeatGenome>.CreatePredicate_OnceOnly());
+	/// <summary>
+	/// Create and return a NeatEvolutionAlgorithm object ready for running the NEAT algorithm/search. Various sub-parts
+	/// of the algorithm are also constructed and connected up.
+	/// This overload accepts a pre-built genome2 population and their associated/parent genome2 factory.
+	/// </summary>
+	public NeatEvolutionAlgorithm<NeatGenome> CreateEvolutionAlgorithm(IGenomeFactory<NeatGenome> genomeFactory, List<NeatGenome> genomeList)
+	{
+	    // Create distance metric. Mismatched genes have a fixed distance of 10; for matched genes the distance is their weigth difference.
+	    IDistanceMetric distanceMetric = new ManhattanDistanceMetric(1.0, 0.0, 10.0);
+	    ISpeciationStrategy<NeatGenome> speciationStrategy = new KMeansClusteringStrategy<NeatGenome>(distanceMetric);
 
-    // Initialize the evolution algorithm.
-    ea.Initialize(genomeListEvaluator, genomeFactory, genomeList);
+	    // Create complexity regulation strategy.
+		IComplexityRegulationStrategy complexityRegulationStrategy = new DefaultComplexityRegulationStrategy(/*_complexityRegulationStr*/ComplexityCeilingType.Relative, System.Convert.ToDouble(_complexityThreshold));//TODO: Relative: verify if not broken
+		// ExperimentUtils.CreateComplexityRegulationStrategy(_complexityRegulationStr, _complexityThreshold);
 
-    // Finished. Return the evolution algorithm
-    return ea;
-}
+	    // Create the evolution algorithm.
+	    NeatEvolutionAlgorithm<NeatGenome> ea = new NeatEvolutionAlgorithm<NeatGenome>(_eaParams, speciationStrategy, complexityRegulationStrategy);
 
-/// <summary>
-/// Creates a new genome decoder that can be used to convert a genome into a phenome.
-/// </summary>
-public IGenomeDecoder<NeatGenome, IBlackBox> CreateGenomeDecoder()
-{
-    return new NeatGenomeDecoder(_activationScheme);
-}
+	    // Create genome2 decoder.
+	    IGenomeDecoder<NeatGenome, IBlackBox> genomeDecoder = new NeatGenomeDecoder(_activationScheme);
 
-#endregion
+	    // Create a genome2 list evaluator. This packages up the genome2 decoder with the genome2 evaluator.
+	    IGenomeListEvaluator<NeatGenome> genomeListEvaluator = new SerialGenomeListEvaluator<NeatGenome, IBlackBox>(genomeDecoder, PhenomeEvaluator);
+
+	    // Wrap the list evaluator in a 'selective' evaulator that will only evaluate new genomes. That is, we skip re-evaluating any genomes
+	    // that were in the population in previous generations (elite genomes). This is determiend by examining each genome2's evaluation info object.
+	    if(!EvaluateParents)
+	        genomeListEvaluator = new SelectiveGenomeListEvaluator<NeatGenome>(genomeListEvaluator,
+	                                 SelectiveGenomeListEvaluator<NeatGenome>.CreatePredicate_OnceOnly());
+
+	    // Initialize the evolution algorithm.
+	    ea.Initialize(genomeListEvaluator, genomeFactory, genomeList);
+
+	    // Finished. Return the evolution algorithm
+	    return ea;
+	}
+
+	/// <summary>
+	/// Creates a new genome decoder that can be used to convert a genome into a phenome.
+	/// </summary>
+	public IGenomeDecoder<NeatGenome, IBlackBox> CreateGenomeDecoder()
+	{
+	    return new NeatGenomeDecoder(_activationScheme);
+	}
+
+	#endregion
 }
