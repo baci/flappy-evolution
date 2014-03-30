@@ -9,7 +9,11 @@ public class birdController : MonoBehaviour {
 
 	public int points {get;private set;}
 
+	public int ID;
+
 	bool dead;
+
+
 
 	// Use this for initialization
 	void Start () {
@@ -50,6 +54,7 @@ public class birdController : MonoBehaviour {
 		if(col.gameObject.tag == "Pipe" || col.gameObject.tag == "Ground"){
 			dead = true;
 			collider2D.isTrigger = true;
+			birdStatistics.instance.BirdDied(points, transform.position.x, ID);
 		}
 	}
 
