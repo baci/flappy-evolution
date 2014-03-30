@@ -196,6 +196,8 @@
      <Compile Include="Assets\NEAT\Scripts\SharpNeatLib\Utility\XmlIoUtils.cs" />
      <Compile Include="Assets\NEAT\Scripts\SharpNeatLib\Utility\ZigguratGaussianSampler.cs" />
      <Compile Include="Assets\Scripts\birdController.cs" />
+     <Compile Include="Assets\Scripts\birdStatistics.cs" />
+     <Compile Include="Assets\Scripts\birdVision.cs" />
      <Compile Include="Assets\Scripts\cameraController.cs" />
      <Compile Include="Assets\Scripts\flappyAI.cs" />
      <Compile Include="Assets\Scripts\gameController.cs" />

@@ -1,10 +1,9 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace />
-  <MonoDevelop.Ide.Workbench ActiveDocument="..\gamedev\trunk\Assets\Scripts\Ship\shipController.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\birdController.cs">
     <Files>
-      <File FileName="..\gamedev\trunk\Assets\Scripts\Spawn&amp;Goal\goal.cs" Line="37" Column="1" />
-      <File FileName="..\gamedev\trunk\Assets\Scripts\Ship\shipCore.cs" Line="69" Column="7" />
-      <File FileName="..\gamedev\trunk\Assets\Scripts\Ship\shipController.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\birdVision.cs" Line="32" Column="29" />
+      <File FileName="Assets\Scripts\birdController.cs" Line="10" Column="19" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

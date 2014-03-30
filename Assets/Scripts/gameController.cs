@@ -20,8 +20,11 @@ public class gameController : MonoBehaviour {
 	void Start () {
 		Physics2D.gravity = new Vector2(0,-gravity);
 
+		birdStatistics.instance.Init(numBirds);
+
 		for(int i=0;i< numBirds;i++){
-			Instantiate(birdPre);
+			GameObject g = Instantiate(birdPre) as GameObject;
+			g.GetComponent<birdController>().ID = i;
 		}
 	}
 	
