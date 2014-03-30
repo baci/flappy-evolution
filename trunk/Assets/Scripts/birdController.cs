@@ -3,8 +3,6 @@ using System.Collections;
 
 public class birdController : MonoBehaviour {
 
-	//public float forwardSpeed;
-
 	public float flapForce;
 
 	public int points {get;private set;}
@@ -18,20 +16,22 @@ public class birdController : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		vision = GetComponent<birdVision>();
+
+		renderer.material.color = new Color(Random.Range(0f,1f),Random.Range(0f,1f),Random.Range(0f,1f));
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		if(Input.GetKeyDown(KeyCode.Space)){
-			Flap();
-		}
 
 		if(gameObject.transform.position.y < -5){
 			destroyMe();
 		}
 
+		//animation
 		transform.right = rigidbody2D.velocity+new Vector2(10,0);
+	}
 
+	void FixedUpdate(){
 		if(!dead){
 			rigidbody2D.velocity = new Vector2(gameController.instance.forwardSpeed,rigidbody2D.velocity.y);
 		}
@@ -50,26 +50,21 @@ public class birdController : MonoBehaviour {
 	}
 
 	void OnCollisionEnter2D(Collision2D col){
-		//print ("HELOP");
 		if(col.gameObject.tag == "Pipe" || col.gameObject.tag == "Ground"){
 			dead = true;
 			collider2D.isTrigger = true;
 			birdStatistics.instance.BirdDied(points, transform.position.x, ID);
 			vision.enabled = false;
 			gameController.instance.birdsAlive--;
+			GetComponent<BoxCollider2D>().enabled = false;
+			rigidbody2D.drag = 2;
 		}
 	}
 
 	void OnTriggerEnter2D(Collider2D col){
 		if(col.tag =="PointTrigger"){
-			//print("TEST");
 			points ++;
 		}
 	}
-
-	/*
-	void OnGUI(){
-		GUI.Label(new Rect(Screen.width/2-25,20,150,20), "POINTS "+points);
-	}
-	*/
+	
 }

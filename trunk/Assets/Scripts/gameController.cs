@@ -21,6 +21,8 @@ public class gameController : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+		Application.targetFrameRate = -1;
+			
 		Physics2D.gravity = new Vector2(0,-gravity);
 
 		birdHolder = new GameObject();
