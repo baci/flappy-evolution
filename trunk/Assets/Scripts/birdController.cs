@@ -13,11 +13,11 @@ public class birdController : MonoBehaviour {
 
 	bool dead;
 
-
+	birdVision vision;
 
 	// Use this for initialization
 	void Start () {
-	
+		vision = GetComponent<birdVision>();
 	}
 	
 	// Update is called once per frame
@@ -30,7 +30,7 @@ public class birdController : MonoBehaviour {
 			destroyMe();
 		}
 
-		transform.right = rigidbody2D.velocity+new Vector2(25,0);
+		transform.right = rigidbody2D.velocity+new Vector2(10,0);
 
 		if(!dead){
 			rigidbody2D.velocity = new Vector2(gameController.instance.forwardSpeed,rigidbody2D.velocity.y);
@@ -55,6 +55,8 @@ public class birdController : MonoBehaviour {
 			dead = true;
 			collider2D.isTrigger = true;
 			birdStatistics.instance.BirdDied(points, transform.position.x, ID);
+			vision.enabled = false;
+			gameController.instance.birdsAlive--;
 		}
 	}
 
