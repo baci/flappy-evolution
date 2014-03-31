@@ -38,6 +38,11 @@ public class birdVision : MonoBehaviour {
 		floatOutPuts[3] = pipeGenerator.instance.closestGap.transform.localScale.y;
 
 		/*
+		foreach(float f in floatOutPuts){
+			print(f);
+		}*/
+
+		/*
 		for(int i=0;i<raycastDirections.Count;i++){
 			pos = new Vector2(transform.position.x,transform.position.y);
 			RaycastHit2D hit = Physics2D.Raycast(pos +raycastPositions[i],raycastDirections[i] , raycastRanges[i], mask);

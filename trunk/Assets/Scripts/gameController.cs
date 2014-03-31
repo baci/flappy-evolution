@@ -7,6 +7,8 @@ public class gameController : MonoBehaviour {
 	public float gravity;
 	public float forwardSpeed;
 
+	int generation = 0;
+
 	public int numBirds;
 
 	public GameObject birdPre;
@@ -46,6 +48,9 @@ public class gameController : MonoBehaviour {
 	}
 
 	void newRound(){
+		generation++;
+		print("starting generation "+generation);
+
 		Vector3 campos = Camera.main.transform.position;
 		campos.x = 0;
 		Camera.main.transform.position = campos;
@@ -61,9 +66,13 @@ public class gameController : MonoBehaviour {
 			setBirdStats(bc);
 		}
 
+
 	}
 
 	void ResetBird(birdController bc){
+		if(bc.vision){
+			bc.vision.enabled = true;
+		}
 		bc.transform.position *= 0;
 		bc.dead = false;
 		bc.velocity *= 0;

@@ -13,13 +13,17 @@ public class birdController : MonoBehaviour {
 
 	public bool enabled;
 
-	birdVision vision;
+	public birdVision vision;
 
 	public Vector2 velocity = Vector2.zero;
 
 	GameObject prevPoint;
 
 	public LayerMask mask;
+
+	Vector3 pos = Vector3.zero;
+		
+	Collider2D col;
 
 	// Use this for initialization
 	void Start () {
@@ -42,14 +46,13 @@ public class birdController : MonoBehaviour {
 
 	void FixedUpdate(){
 		if(enabled){
-			Vector3 pos = transform.position;
-			velocity.y -= gameController.instance.gravity/60;
-			pos.x += velocity.x/60;
-			pos.y += velocity.y/60;
+			pos = transform.position;
+			velocity.y -= gameController.instance.gravity;
+
+			pos += new Vector3(velocity.x,velocity.y,0);
 			transform.position = pos;
 
-			Collider2D col = Physics2D.OverlapArea(new Vector2(transform.position.x+0.5f,transform.position.y+0.5f),new Vector2(transform.position.x-0.5f,transform.position.y-0.5f),mask);
-			//print(col);
+			col = Physics2D.OverlapArea(new Vector2(transform.position.x+0.5f,transform.position.y+0.5f),new Vector2(transform.position.x-0.5f,transform.position.y-0.5f),mask);
 			if(!dead){
 				if(col){
 					if(col.tag == "PointTrigger"){
@@ -58,7 +61,6 @@ public class birdController : MonoBehaviour {
 							points++;
 						}
 					}else if(col.gameObject.tag == "Pipe" || col.gameObject.tag == "Ground"){
-	//					print(col);
 						velocity*=-1;
 						SetDead();
 					}
@@ -66,8 +68,10 @@ public class birdController : MonoBehaviour {
 			}
 
 			if(!dead){
-				velocity = new Vector2(gameController.instance.forwardSpeed,velocity.y);
-		}
+				velocity.x = gameController.instance.forwardSpeed;
+			}
+
+			//transform.right = new Vector3(velocity.x,velocity.y,0);//+Vector2.right*1;
 		}
 	}
 
@@ -76,7 +80,7 @@ public class birdController : MonoBehaviour {
 			velocity = new Vector2(velocity.x,flapForce);
 		}else{
 			velocity.x *= 0.5f;
-			velocity.y -= 1;
+			velocity.y -= 0.01f;
 		}
 	}
 
