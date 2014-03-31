@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class gameController : MonoBehaviour {
 
@@ -13,6 +14,8 @@ public class gameController : MonoBehaviour {
 	public int birdsAlive;
 
 	GameObject birdHolder;
+
+	public List<birdController> allBirds = new List<birdController>();
 
 	public static gameController instance;
 	void Awake(){
@@ -30,6 +33,15 @@ public class gameController : MonoBehaviour {
 
 		birdStatistics.instance.Init(numBirds);
 
+		for(int i=0;i< numBirds;i++){
+			GameObject g = Instantiate(birdPre) as GameObject;
+			g.transform.parent = birdHolder.transform;
+			birdController bc = g.GetComponent<birdController>();
+			bc.ID = i;
+			setBirdStats(bc);
+			allBirds.Add(bc);
+		}
+
 		newRound();
 	}
 
@@ -44,13 +56,20 @@ public class gameController : MonoBehaviour {
 		birdStatistics.instance.Clear();
 		birdsAlive = numBirds;
 
-		for(int i=0;i< numBirds;i++){
-			GameObject g = Instantiate(birdPre) as GameObject;
-			g.transform.parent = birdHolder.transform;
-			birdController bc = g.GetComponent<birdController>();
-			bc.ID = i;
+		foreach(birdController bc in allBirds){
+			ResetBird(bc);
 			setBirdStats(bc);
 		}
+
+	}
+
+	void ResetBird(birdController bc){
+		bc.transform.position *= 0;
+		bc.dead = false;
+		bc.velocity *= 0;
+		bc.points = 0;
+		bc.enabled = true;
+
 	}
 
 	void setBirdStats(birdController bc){
