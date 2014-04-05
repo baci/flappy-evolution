@@ -4,9 +4,9 @@ using System.Diagnostics;
 
 public class XOReval : IPhenomeEvaluator<IBlackBox> {
 
-	const double STOP_FITNESS = 10.0; //used to check if experiment was a success
-	ulong _evalCount;
-	bool _stopConditionSatisfied;
+	private const double STOP_FITNESS = 10.0; //used to check if experiment was a success
+	private ulong _evalCount;
+	private bool _stopConditionSatisfied;
 
 	public ulong EvaluationCount { get{return _evalCount;} }
 	public bool StopConditionSatisfied { get{return _stopConditionSatisfied;} }

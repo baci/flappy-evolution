@@ -7,13 +7,15 @@
     <Iters>2</Iters>
   </Activation>
   <ComplexityRegulationStrategy>Absolute</ComplexityRegulationStrategy>
-  <ComplexityThreshold>50</ComplexityThreshold>
+  <ComplexityThreshold>6</ComplexityThreshold>
   <Description>
     XOR evolution test.
 	1 + 0 = 1
 	0 + 1 = 1
 	0 + 0 = 0
 	1 + 1 = 0
+	
+	complexity threshold should be 3*(inputs+outputs)
   </Description>
  
 </Config>
