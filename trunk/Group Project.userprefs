@@ -1,0 +1,13 @@
+﻿<Properties>
+  <MonoDevelop.Ide.Workspace />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\NEAT\Experiments\XOR evals\ExperimentObject.cs">
+    <Files>
+      <File FileName="Assets\NEAT\Experiments\XOR evals\ExperimentObject.cs" Line="45" Column="16" />
+      <File FileName="Assets\NEAT\Experiments\SimpleNeatExperiment.cs" Line="120" Column="64" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+</Properties>

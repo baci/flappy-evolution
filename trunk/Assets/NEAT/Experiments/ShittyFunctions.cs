@@ -37,7 +37,7 @@ public class ShittyFunctions {
 		{
 		case "Acyclic":
 			return NetworkActivationScheme.CreateAcyclicScheme();
-		case "CyclicFixedIters":
+		case "FixedIters":
 			int iters = XmlUtils.GetValueAsInt(xmlActivation, "Iters");
 			return NetworkActivationScheme.CreateCyclicFixedTimestepsScheme(iters);
 		case "CyclicRelax":
