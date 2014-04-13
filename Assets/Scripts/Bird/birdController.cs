@@ -25,6 +25,8 @@ public class birdController : MonoBehaviour {
 		
 	Collider2D col;
 
+	bool hasFlapped = false;
+
 	// Use this for initialization
 	void Start () {
 		vision = GetComponent<birdVision>();
@@ -40,7 +42,7 @@ public class birdController : MonoBehaviour {
 			}
 
 			//animation
-			transform.right = velocity+new Vector2(10,0);
+			//transform.right = velocity+new Vector2(10,0);
 		}
 	}
 
@@ -48,6 +50,9 @@ public class birdController : MonoBehaviour {
 		if(enabled){
 			pos = transform.position;
 			velocity.y -= gameController.instance.gravity;
+			if(!dead){
+				velocity.x = gameController.instance.forwardSpeed;
+			}
 
 			pos += new Vector3(velocity.x,velocity.y,0);
 			transform.position = pos;
@@ -67,17 +72,19 @@ public class birdController : MonoBehaviour {
 				}
 			}
 
-			if(!dead){
-				velocity.x = gameController.instance.forwardSpeed;
-			}
 
-			//transform.right = new Vector3(velocity.x,velocity.y,0);//+Vector2.right*1;
+			//transform.right = new Vector3(velocity.x+0.5f,velocity.y,0);//+Vector2.right*1;
 		}
 	}
 
+	void LateUpdate(){
+		hasFlapped = false;
+	}
+
 	public void Flap(){
-		if(!dead){
+		if(!dead && !hasFlapped){
 			velocity = new Vector2(velocity.x,flapForce);
+			hasFlapped = true;
 		}else{
 			velocity.x *= 0.5f;
 			velocity.y -= 0.01f;
