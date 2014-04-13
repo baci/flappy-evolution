@@ -52,7 +52,7 @@ public class gameController : MonoBehaviour {
 		newRound();
 	}
 
-	public void IDontEvenCare(IList list){
+	public void IDontEvenCare(List<IGenome<IBlackBox>> list){
 		List<IBlackBox> _blackBoxes = new List<IBlackBox>();
 		foreach (IGenome<IBlackBox> genome in list)
 		{

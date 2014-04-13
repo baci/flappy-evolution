@@ -1,11 +1,14 @@
 ﻿using UnityEngine;
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using System.Xml;
 using System.Text;
 using System.IO;
 using SharpNeat.EvolutionAlgorithms;
 using SharpNeat.Genomes.Neat;
+using SharpNeat.Phenomes;
+using SharpNeat.Core;
 
 public class FlappyExperimentObject : MonoBehaviour {
 

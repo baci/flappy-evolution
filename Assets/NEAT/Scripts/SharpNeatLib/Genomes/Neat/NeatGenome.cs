@@ -23,6 +23,7 @@ using System.Diagnostics;
 using SharpNeat.Core;
 using SharpNeat.Network;
 using SharpNeat.Utility;
+using SharpNeat.Phenomes;
 
 namespace SharpNeat.Genomes.Neat
 {
