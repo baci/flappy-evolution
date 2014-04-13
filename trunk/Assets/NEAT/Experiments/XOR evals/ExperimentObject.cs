@@ -55,8 +55,8 @@ public class ExperimentObject : MonoBehaviour {
 
 	private static void ea_UpdateEvent(object sender, EventArgs e)
 	{
-		Debug.Log(string.Format("gen={0:N0} bestFitness={1:N6}",
-		                                _ea.CurrentGeneration, _ea.Statistics._maxFitness));
+		Debug.Log(string.Format("gen={0:N0} bestFitness={1:N6} meanFitness={2:N6} champComplexity={3:N3}",
+		                        _ea.CurrentGeneration, _ea.Statistics._maxFitness, _ea.Statistics._meanFitness, _ea.CurrentChampGenome.Complexity));
 		
 		/*// Save the best genome to file
 		var doc = NeatGenomeXmlIO.SaveComplete(
