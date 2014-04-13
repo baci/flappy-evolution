@@ -272,6 +272,7 @@ namespace SharpNeat.EvolutionAlgorithms
                         OnUpdateEvent();
                         OnPausedEvent();
 
+
                         // Wait indefinitely for a signal to wake up and continue.
                         _awaitRestartEvent.WaitOne();
                     }

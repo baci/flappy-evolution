@@ -8,6 +8,9 @@ public class pipeGenerator : MonoBehaviour {
 
 	public GameObject closestGap;
 
+	public float pipeDistance;
+	//public int numStartPipes;
+
 	GameObject pipeHolder;
 
 	List<GameObject> pipes = new List<GameObject>();
@@ -25,15 +28,15 @@ public class pipeGenerator : MonoBehaviour {
 	}
 
 	public void GenerateStart(){
-		for(int i=0;i<4;i++){
-			pipes.Add(Instantiate(pipePre, new Vector3(i*10f+10,Random.Range(-2f,2f),0),Quaternion.identity) as GameObject);
+		for(int i=0;i<Mathf.FloorToInt(40/pipeDistance);i++){
+			pipes.Add(Instantiate(pipePre, new Vector3(i*pipeDistance+10,Random.Range(-2f,2f),0),Quaternion.identity) as GameObject);
 			pipes[pipes.Count-1].transform.parent = pipeHolder.transform;
 		}
 		FindClosestGap();
 	}
 	
 	// Update is called once per frame
-	void Update () {
+	void FixedUpdate () {
 		FindClosestGap();
 	}
 
@@ -45,7 +48,7 @@ public class pipeGenerator : MonoBehaviour {
 			if(g != null){
 				PipeGap gap = g.GetComponentInChildren<PipeGap>();
 				float thisDis = gap.transform.position.x-Camera.main.transform.position.x;
-				if(thisDis < dis && thisDis > -1){
+				if(thisDis < dis && thisDis > -0.75f){
 					dis = thisDis;
 					gp = gap.gameObject;
 				}

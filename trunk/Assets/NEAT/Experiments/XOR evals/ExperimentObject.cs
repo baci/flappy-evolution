@@ -50,6 +50,7 @@ public class ExperimentObject : MonoBehaviour {
 	void OnApplicationQuit(){
 		if(_ea != null)
 			_ea.Stop();
+
 	}
 
 	private static void ea_UpdateEvent(object sender, EventArgs e)
