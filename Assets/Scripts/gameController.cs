@@ -24,9 +24,9 @@ public class gameController : MonoBehaviour {
 	public List<birdController> allBirds = new List<birdController>();
 
 	public static gameController instance;
+
 	void Awake(){
 		instance = this;
-		HaxorsEvolutionAlgorithm<IBlackBox>.OnGenerationStarted += IDontEvenCare;
 	}
 
 	// Use this for initialization
@@ -52,8 +52,15 @@ public class gameController : MonoBehaviour {
 		newRound();
 	}
 
-	public void IDontEvenCare(List<IGenome<IBlackBox>> list){
-		allBrains = list;
+	public void IDontEvenCare(IList list){
+		List<IBlackBox> _blackBoxes = new List<IBlackBox>();
+		foreach (IGenome<IBlackBox> genome in list)
+		{
+			_blackBoxes.Add(genome.CachedPhenome as IBlackBox);
+		}
+
+		allBrains = _blackBoxes;
+		print("It worked, I guess");
 	}
 
 	void newRound(){
