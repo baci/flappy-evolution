@@ -47,6 +47,11 @@ public class ExperimentObject : MonoBehaviour {
 		}
 	}
 
+	void OnApplicationQuit(){
+		if(_ea != null)
+			_ea.Stop();
+	}
+
 	private static void ea_UpdateEvent(object sender, EventArgs e)
 	{
 		Debug.Log(string.Format("gen={0:N0} bestFitness={1:N6}",
