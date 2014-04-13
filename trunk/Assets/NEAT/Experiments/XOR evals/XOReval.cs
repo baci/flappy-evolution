@@ -105,6 +105,7 @@ public class XOReval : IPhenomeEvaluator<IBlackBox> {
 			_stopConditionSatisfied = true;
 		}
 
+		UnityEngine.Debug.Log(""+box.ToString());
 		//done!
 		return new FitnessInfo(fitness, fitness);
 	}
