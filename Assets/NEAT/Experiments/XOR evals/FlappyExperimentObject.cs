@@ -45,6 +45,25 @@ public class FlappyExperimentObject : MonoBehaviour {
 				_ea.Stop();
 			Application.Quit();
 		}
+
+		if(_ea.rebuildGenList)
+		{
+			// Rebuild _genomeList. It will now contain just the elite genomes.
+			_ea.RebuildGenomeList();
+			
+			// Append offspring genomes to the elite genomes in _genomeList. We do this before calling the
+			// _genomeListEvaluator.Evaluate because some evaluation schemes re-evaluate the elite genomes 
+			// (otherwise we could just evaluate offspringList).
+			_ea._genomeList.AddRange(_ea.offspringList);
+			//TODO: exit Waiting to Start mode and 
+			
+			if(gameController.instance != null){
+				gameController.instance.IDontEvenCare(_ea._genomeList);
+				_ea._currentStatus = HaxorsEvolutionAlgorithm<NeatGenome>.SimulationStatus.RUNNING;
+			}
+			
+			_ea.rebuildGenList = false;
+		}
 	}
 
 	void OnApplicationQuit(){
