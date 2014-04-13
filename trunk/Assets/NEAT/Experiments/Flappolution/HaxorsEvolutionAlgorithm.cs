@@ -8,8 +8,8 @@ using SharpNeat.Phenomes;
 public class HaxorsEvolutionAlgorithm<TGenome> : NeatEvolutionAlgorithm<TGenome>
 where TGenome : class, IGenome<TGenome>  {
 
-	public delegate void BoxEvent(IBlackBox box);
-	public static BoxEvent OnDoSomething; //I don't know what this will do now?
+	public delegate void ListEvent(List<TGenome> list);
+	public static ListEvent OnGenerationStarted; //I don't know what this will do now?
 
 	public enum SimulationStatus{
 		WAITING_TO_START,
@@ -46,22 +46,28 @@ where TGenome : class, IGenome<TGenome>  {
 			// (otherwise we could just evaluate offspringList).
 			_genomeList.AddRange(offspringList);
 			//TODO: exit Waiting to Start mode and 
+
+			if(OnGenerationStarted != null){
+				OnGenerationStarted(offspringList);
+				_currentStatus = SimulationStatus.RUNNING;
+			}
 			return;
 		} else if (_currentStatus == SimulationStatus.RUNNING)
 		{
-			// Evaluate genomes.
-			_genomeListEvaluator.Evaluate(_genomeList);
-			/**
-			 * TODO: Vince says: This Evaluate is meant to check the fitness of a bird.
-			 * We should most likely keep adding inputs at every physics tick and extracting
-			 * the tap-or-no-tap.
-			 * When the simulation is over, feed the distance back as fitness and
-			 * let evolution do its job.
-			 */
+			//TODO: Lock until all birds are dead!
 			return;
 		}
 
 		//AKA if(_currentStatus == SimulationStatus.ENDING)
+		// Evaluate genomes.
+		_genomeListEvaluator.Evaluate(_genomeList);
+		/**
+		 * TODO: Vince says: This Evaluate is meant to check the fitness of a bird.
+		 * We should most likely keep adding inputs at every physics tick and extracting
+		 * the tap-or-no-tap.
+		 * When the simulation is over, feed the distance back as fitness and
+		 * let evolution do its job.
+		 */
 
 		// Integrate offspring into species.
 		if(emptySpeciesFlag)
