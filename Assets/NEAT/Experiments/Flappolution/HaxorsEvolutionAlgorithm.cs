@@ -17,7 +17,7 @@ where TGenome : class, IGenome<TGenome>  {
 		ENDING
 	}
 
-	public static SimulationStatus _currentStatus = SimulationStatus.WAITING_TO_START;
+	protected SimulationStatus _currentStatus = SimulationStatus.WAITING_TO_START;
 	bool emptySpeciesFlag;
 	int offspringCount;
 	SpecieStats[] specieStatsArr;
