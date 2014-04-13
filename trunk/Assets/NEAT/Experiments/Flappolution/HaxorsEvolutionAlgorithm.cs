@@ -8,9 +8,6 @@ using SharpNeat.Phenomes;
 public class HaxorsEvolutionAlgorithm<TGenome> : NeatEvolutionAlgorithm<TGenome>
 where TGenome : class, IGenome<TGenome>  {
 
-	public delegate void ListEvent(List<TGenome> list);
-	public static ListEvent OnGenerationStarted; //I don't know what this will do now?
-
 	public enum SimulationStatus{
 		WAITING_TO_START,
 		RUNNING,
@@ -47,8 +44,8 @@ where TGenome : class, IGenome<TGenome>  {
 			_genomeList.AddRange(offspringList);
 			//TODO: exit Waiting to Start mode and 
 
-			if(OnGenerationStarted != null){
-				OnGenerationStarted(_genomeList);
+			if(gameController.instance != null){
+				gameController.instance.IDontEvenCare(_genomeList);
 				_currentStatus = SimulationStatus.RUNNING;
 			}
 			return;
