@@ -61,6 +61,8 @@ public class gameController : MonoBehaviour {
 
 		allBrains = _blackBoxes;
 		print("It worked, I guess");
+		//------------------does not happen yet!------------
+		newRound();
 	}
 
 	void newRound(){
@@ -105,6 +107,7 @@ public class gameController : MonoBehaviour {
 	void Update () {
 		if(birdsAlive == 0){
 			newRound();
+			//TODO: tell something that the generation is done
 		}
 	}
 }

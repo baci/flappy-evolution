@@ -17,7 +17,7 @@ public class birdVision : MonoBehaviour {
 	float[] floatOutPuts;
 
 	// Use this for initialization
-	void Start () {
+	void Awake () {
 		output = new RaycastHit2D[raycastDirections.Count];
 
 		floatOutPuts = new float[4];
