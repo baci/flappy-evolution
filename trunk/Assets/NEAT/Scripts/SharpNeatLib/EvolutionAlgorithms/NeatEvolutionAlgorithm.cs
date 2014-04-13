@@ -863,7 +863,7 @@ namespace SharpNeat.EvolutionAlgorithms
 
         #region InnerClass [SpecieStats]
 
-        class SpecieStats
+        public class SpecieStats
         {
             // Real/continuous stats.
             public double _meanFitness;

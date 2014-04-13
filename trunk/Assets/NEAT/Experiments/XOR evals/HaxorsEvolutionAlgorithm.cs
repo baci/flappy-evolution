@@ -94,12 +94,12 @@ where TGenome : class, IGenome<TGenome>  {
 		// (e.g. reduce or disable additive mutations).
 		_complexityRegulationMode = _complexityRegulationStrategy.DetermineMode(_stats);
 		_genomeFactory.SearchMode = (int)_complexityRegulationMode;
-		switch(_complexityRegulationMode)
+		switch((int)_complexityRegulationMode)
 		{
-		case ComplexityRegulationMode.Complexifying:
+		case /*ComplexityRegulationMode.Complexifying*/0:
 			_eaParams = _eaParamsComplexifying;
 			break;
-		case ComplexityRegulationMode.Simplifying:
+		case /*ComplexityRegulationMode.Simplifying*/1:
 			_eaParams = _eaParamsSimplifying;
 			break;
 		}
