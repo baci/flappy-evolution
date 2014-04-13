@@ -1,6 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using SharpNeat.Phenomes;
+using SharpNeat.Core;
 
 public class gameController : MonoBehaviour {
 
@@ -17,11 +19,14 @@ public class gameController : MonoBehaviour {
 
 	GameObject birdHolder;
 
+	public List<SharpNeat.Phenomes.IBlackBox> allBrains = new List<SharpNeat.Phenomes.IBlackBox>();
+
 	public List<birdController> allBirds = new List<birdController>();
 
 	public static gameController instance;
 	void Awake(){
 		instance = this;
+		HaxorsEvolutionAlgorithm<IBlackBox>.OnGenerationStarted += IDontEvenCare;
 	}
 
 	// Use this for initialization
@@ -45,6 +50,10 @@ public class gameController : MonoBehaviour {
 		}
 
 		newRound();
+	}
+
+	public void IDontEvenCare(List<IGenome<IBlackBox>> list){
+		allBrains = list;
 	}
 
 	void newRound(){
