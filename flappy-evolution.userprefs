@@ -1,15 +1,6 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\flappyAI.cs">
-    <Files>
-      <File FileName="..\DataMining\Ex1\Assets\Scripts\Apriori\Apriori.cs" Line="122" Column="3" />
-      <File FileName="Assets\Scripts\birdVision.cs" Line="43" Column="6" />
-      <File FileName="Assets\Scripts\birdController.cs" Line="74" Column="6" />
-      <File FileName="Assets\Scripts\gameController.cs" Line="51" Column="16" />
-      <File FileName="Assets\Scripts\cameraController.cs" Line="9" Column="75" />
-      <File FileName="Assets\Scripts\flappyAI.cs" Line="1" Column="1" />
-    </Files>
-  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
