@@ -793,7 +793,7 @@ namespace SharpNeat.EvolutionAlgorithms
         /// <summary>
         /// Rebuild _genomeList from genomes held within the species.
         /// </summary>
-        protected void RebuildGenomeList()
+        public void RebuildGenomeList()
         {
             _genomeList.Clear();
             foreach(Specie<TGenome> specie in _specieList) {

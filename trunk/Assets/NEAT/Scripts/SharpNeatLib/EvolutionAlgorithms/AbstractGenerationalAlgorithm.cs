@@ -39,7 +39,7 @@ namespace SharpNeat.EvolutionAlgorithms
 
         protected IGenomeListEvaluator<TGenome> _genomeListEvaluator;
         protected IGenomeFactory<TGenome> _genomeFactory;
-        protected List<TGenome> _genomeList;
+        public List<TGenome> _genomeList;
         protected int _populationSize;
         protected TGenome _currentBestGenome;
 
