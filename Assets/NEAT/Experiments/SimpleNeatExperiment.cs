@@ -199,8 +199,8 @@ public abstract class SimpleNeatExperiment /*: INeatExperiment*/
 		// ExperimentUtils.CreateComplexityRegulationStrategy(_complexityRegulationStr, _complexityThreshold);
 
 	    // Create the evolution algorithm.
-	    NeatEvolutionAlgorithm<NeatGenome> ea = new NeatEvolutionAlgorithm<NeatGenome>(_eaParams, speciationStrategy, complexityRegulationStrategy);
-
+	    NeatEvolutionAlgorithm<NeatGenome> ea = new HaxorsEvolutionAlgorithm<NeatGenome>(_eaParams, speciationStrategy, complexityRegulationStrategy);
+		//TODO: make sure I haven't broke everything
 	    // Create genome2 decoder.
 	    IGenomeDecoder<NeatGenome, IBlackBox> genomeDecoder = new NeatGenomeDecoder(_activationScheme);
 
