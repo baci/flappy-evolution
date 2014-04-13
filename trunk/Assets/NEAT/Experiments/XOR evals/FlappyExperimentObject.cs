@@ -26,7 +26,7 @@ public class FlappyExperimentObject : MonoBehaviour {
 			experiment.Initialize("any name", xml);
 
 			// Create evolution algorithm and attach update event.
-			_ea = experiment.CreateEvolutionAlgorithm() as HaxorsEvolutionAlgorithm<NeatGenome>;
+			_ea = (HaxorsEvolutionAlgorithm<NeatGenome>)experiment.CreateEvolutionAlgorithm();
 			_ea.UpdateEvent += new EventHandler(ea_UpdateEvent);
 			
 			// Start algorithm (it will run on a background thread).
