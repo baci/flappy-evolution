@@ -17,7 +17,7 @@ where TGenome : class, IGenome<TGenome>  {
 		ENDING
 	}
 
-	protected SimulationStatus _currentStatus = SimulationStatus.WAITING_TO_START;
+	public static SimulationStatus _currentStatus = SimulationStatus.WAITING_TO_START;
 	bool emptySpeciesFlag;
 	int offspringCount;
 	SpecieStats[] specieStatsArr;
@@ -48,7 +48,7 @@ where TGenome : class, IGenome<TGenome>  {
 			//TODO: exit Waiting to Start mode and 
 
 			if(OnGenerationStarted != null){
-				OnGenerationStarted(offspringList);
+				OnGenerationStarted(_genomeList);
 				_currentStatus = SimulationStatus.RUNNING;
 			}
 			return;
