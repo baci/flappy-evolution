@@ -5,7 +5,7 @@
 	<Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
 	<ProductVersion>10.0.20506</ProductVersion>
 	<SchemaVersion>2.0</SchemaVersion>
-	<ProjectGuid>{6A0C6E1A-61CA-4B3E-4231-174E97FF851A}</ProjectGuid>
+	<ProjectGuid>{DD59BFFA-8E37-DCFB-3225-46483497989B}</ProjectGuid>
 	<OutputType>Library</OutputType>
 	<AppDesignerFolder>Properties</AppDesignerFolder>
 	<RootNamespace></RootNamespace>
@@ -47,6 +47,8 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\NEAT\Experiments\ExperimentParams.cs" />
+     <Compile Include="Assets\NEAT\Experiments\Flappolution\BirdsEvaluation.cs" />
+     <Compile Include="Assets\NEAT\Experiments\Flappolution\HaxorsEvolutionAlgorithm.cs" />
      <Compile Include="Assets\NEAT\Experiments\ShittyFunctions.cs" />
      <Compile Include="Assets\NEAT\Experiments\SimpleNeatExperiment.cs" />
      <Compile Include="Assets\NEAT\Experiments\XOR evals\ExperimentObject.cs" />
