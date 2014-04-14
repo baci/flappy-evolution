@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using SharpNeat.Phenomes;
 using SharpNeat.Core;
+using SharpNeat.Genomes.Neat;
 
 public class gameController : MonoBehaviour {
 
@@ -52,9 +53,9 @@ public class gameController : MonoBehaviour {
 		newRound();
 	}
 
-	public void IDontEvenCare(List<IGenome<IBlackBox>> list){
+	public void IDontEvenCare(List<NeatGenome> list){
 		List<IBlackBox> _blackBoxes = new List<IBlackBox>();
-		foreach (IGenome<IBlackBox> genome in list)
+		foreach (NeatGenome genome in list)
 		{
 			_blackBoxes.Add(genome.CachedPhenome as IBlackBox);
 		}
