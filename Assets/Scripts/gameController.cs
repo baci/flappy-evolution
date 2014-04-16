@@ -12,9 +12,11 @@ public class gameController : MonoBehaviour {
 	public float gravity;
 	public float forwardSpeed;
 
-	int generation = 0;
+	public int generation = 0;
 
-	public int numBirds;
+	//public int numBirds;
+
+	public float spawnDistanceArea;
 
 	public GameObject birdPre;
 
@@ -37,6 +39,9 @@ public class gameController : MonoBehaviour {
 		}
 	}
 
+	[Range(1,100)]
+	public float timeScale = 1;
+
 	void Awake(){
 		instance = this;
 	}
@@ -50,9 +55,9 @@ public class gameController : MonoBehaviour {
 		birdHolder = new GameObject();
 		birdHolder.name = "birdHolder";
 
-		birdStatistics.instance.Init(numBirds);
+		birdStatistics.instance.Init(EvolutionSettings.instance.PopulationSize);
 
-		for(int i=0;i< numBirds;i++){
+		for(int i=0;i< EvolutionSettings.instance.PopulationSize;i++){
 			GameObject g = Instantiate(birdPre) as GameObject;
 			g.transform.parent = birdHolder.transform;
 			birdController bc = g.GetComponent<birdController>();
@@ -79,7 +84,7 @@ public class gameController : MonoBehaviour {
 		for(int i=0;i< allBirds.Count;i++){
 			allBirds[i].AI.myBrain = allBrains[i];
 			if(allBrains[i]== null){
-				Debug.LogError("Brain "+i+" is invalid");
+				//Debug.LogError("Brain "+i+" is invalid");
 			}
 		}
 		print("number of birds "+allBirds.Count+" number of brainz "+allBrains.Count);
@@ -102,7 +107,7 @@ public class gameController : MonoBehaviour {
 		pipeGenerator.instance.GenerateStart();
 
 		birdStatistics.instance.Clear();
-		birdsAlive = numBirds;
+		birdsAlive = EvolutionSettings.instance.PopulationSize;
 
 		foreach(birdController bc in allBirds){
 			ResetBird(bc);
@@ -115,7 +120,8 @@ public class gameController : MonoBehaviour {
 		if(bc.vision){
 			bc.vision.enabled = true;
 		}
-		bc.transform.position *= 0;
+		float xStart = 0;
+		bc.transform.position = new Vector3(xStart,0,0);
 		bc.dead = false;
 		bc.velocity *= 0;
 		bc.points = 0;
@@ -124,7 +130,11 @@ public class gameController : MonoBehaviour {
 	}
 
 	void setBirdStats(birdController bc){
+		bc.birdStats.vision = 0.5f;
+	}
 
+	void FixedUpdate(){
+		//Time.fixedDeltaTime = 1/timeScale;
 	}
 
 	// Update is called once per frame
@@ -136,6 +146,7 @@ public class gameController : MonoBehaviour {
 			FlappyExperimentObject._ea.currentStatus = HaxorsEvolutionAlgorithm<NeatGenome>.SimulationStatus.ENDING;
 			FlappyExperimentObject._ea.FinishGeneration();
 			FlappyExperimentObject._ea.FinishGeneration();
+			print("All birds are dead, end of simulation");
 			//newRound();
 			//TODO: tell something that the generation is done
 		}

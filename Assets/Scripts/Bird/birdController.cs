@@ -28,6 +28,16 @@ public class birdController : MonoBehaviour {
 
 	bool hasFlapped = false;
 
+
+	public BirdStats birdStats = new BirdStats();
+	public class BirdStats{
+		//the accuricy of the vision; lower is better
+		public float vision;
+
+		public float size = 1;
+		public float startFood = 1;
+	}
+
 	// Use this for initialization
 	void Start () {
 		vision = GetComponent<birdVision>();
@@ -84,19 +94,20 @@ public class birdController : MonoBehaviour {
 		hasFlapped = false;
 	}
 
-	public void Flap(){
+	public void Flap(float amount){
 		if(!dead && !hasFlapped){
-			velocity = new Vector2(velocity.x,flapForce);
+			velocity = new Vector2(velocity.x,flapForce*(amount*2));
 			hasFlapped = true;
 		}else{
-			velocity.x *= 0.5f;
-			velocity.y -= 0.01f;
+			//velocity.x *= 0.5f;
+			//velocity.y -= 0.01f;
 		}
 	}
 
 
 
 	void destroyMe(){
+		gameController.instance.birdsAlive--;
 		enabled = false;
 	}
 
@@ -119,7 +130,7 @@ public class birdController : MonoBehaviour {
 			dead = true;
 			birdStatistics.instance.BirdDied(points, transform.position.x, ID);
 			vision.enabled = false;
-			gameController.instance.birdsAlive--;
+			//gameController.instance.birdsAlive--;
 		}
 	}
 	

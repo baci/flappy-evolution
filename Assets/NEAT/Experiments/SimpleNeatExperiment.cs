@@ -112,7 +112,9 @@ public abstract class SimpleNeatExperiment /*: INeatExperiment*/
 	public void Initialize(string name, XmlElement xmlConfig)
 	{
 	    _name = name;
-	    _populationSize = XmlUtils.GetValueAsInt(xmlConfig, "PopulationSize");
+	    //_populationSize = XmlUtils.GetValueAsInt(xmlConfig, "PopulationSize");
+		_populationSize = EvolutionSettings.instance.PopulationSize;
+
 	    _specieCount = XmlUtils.GetValueAsInt(xmlConfig, "SpecieCount");
 	    _activationScheme = ShittyFunctions.CreateActivationScheme(xmlConfig, "Activation");
 	    _complexityRegulationStr = XmlUtils.TryGetValueAsString(xmlConfig, "ComplexityRegulationStrategy");
