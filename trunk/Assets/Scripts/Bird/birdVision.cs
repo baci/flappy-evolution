@@ -57,6 +57,10 @@ public class birdVision : MonoBehaviour {
 		return floatOutPuts[num];
 	}
 
+	public int numOutputs(){
+		return floatOutPuts.Length;
+	}
+
 	void OnDrawGizmos() {
 		/*
 		for(int i=0;i<raycastDirections.Count;i++){

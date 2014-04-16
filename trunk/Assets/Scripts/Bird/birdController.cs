@@ -14,6 +14,7 @@ public class birdController : MonoBehaviour {
 	public bool enabled;
 
 	public birdVision vision;
+	public flappyAI AI;
 
 	public Vector2 velocity = Vector2.zero;
 
@@ -30,6 +31,7 @@ public class birdController : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		vision = GetComponent<birdVision>();
+		AI = GetComponent<flappyAI>();
 
 		//renderer.material.color = new Color(Random.Range(0f,1f),Random.Range(0f,1f),Random.Range(0f,1f));
 	}
