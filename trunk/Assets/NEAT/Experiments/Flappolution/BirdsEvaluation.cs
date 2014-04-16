@@ -13,11 +13,17 @@ public class BirdsEvaluation : IPhenomeEvaluator<IBlackBox> {
 
 	public FitnessInfo Evaluate(IBlackBox box){
 
-		ISignalArray inputSignal = box.InputSignalArray;
-		ISignalArray outputSignal = box.OutputSignalArray;
+		//ISignalArray inputSignal = box.InputSignalArray;
+		//ISignalArray outputSignal = box.OutputSignalArray;
 
+		gameController gc = gameController.instance;
+		int i = gc.allBrains.IndexOf(box);
 
-		return FitnessInfo.Zero;
+		float dist = birdStatistics.instance.Distances[i];
+
+		FitnessInfo fitnessInfo = new FitnessInfo(dist*dist, dist*dist);
+
+		return fitnessInfo;
 	}
 
 	public void Reset(){

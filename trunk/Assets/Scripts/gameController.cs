@@ -61,7 +61,12 @@ public class gameController : MonoBehaviour {
 		List<IBlackBox> _blackBoxes = new List<IBlackBox>();
 		foreach (NeatGenome genome in list)
 		{
-			_blackBoxes.Add(genome.CachedPhenome as IBlackBox);
+			if(genome.CachedPhenome is IBlackBox){
+				_blackBoxes.Add(genome.CachedPhenome as IBlackBox);
+			}
+			else{
+				Debug.Log("Something is awry!");
+			}
 		}
 
 		allBrains = _blackBoxes;
@@ -119,8 +124,11 @@ public class gameController : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
+		if(!isSimulating)return;
+
 		if(birdsAlive == 0){
 			isSimulating = false;
+			FlappyExperimentObject._ea._currentStatus = HaxorsEvolutionAlgorithm<NeatGenome>.SimulationStatus.ENDING;
 			//newRound();
 			//TODO: tell something that the generation is done
 		}
