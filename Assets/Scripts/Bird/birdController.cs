@@ -49,34 +49,36 @@ public class birdController : MonoBehaviour {
 	}
 
 	void FixedUpdate(){
-		if(enabled){
-			pos = transform.position;
-			velocity.y -= gameController.instance.gravity;
-			if(!dead){
-				velocity.x = gameController.instance.forwardSpeed;
-			}
+		//if(gameController.instance.isSimulating){
+			if(enabled){
+				pos = transform.position;
+				velocity.y -= gameController.instance.gravity;
+				if(!dead){
+					velocity.x = gameController.instance.forwardSpeed;
+				}
 
-			pos += new Vector3(velocity.x,velocity.y,0);
-			transform.position = pos;
+				pos += new Vector3(velocity.x,velocity.y,0);
+				transform.position = pos;
 
-			col = Physics2D.OverlapArea(new Vector2(transform.position.x+0.5f,transform.position.y+0.5f),new Vector2(transform.position.x-0.5f,transform.position.y-0.5f),mask);
-			if(!dead){
-				if(col){
-					if(col.tag == "PointTrigger"){
-						if(prevPoint != col.gameObject){
-							prevPoint = col.gameObject;
-							points++;
+				col = Physics2D.OverlapArea(new Vector2(transform.position.x+0.5f,transform.position.y+0.5f),new Vector2(transform.position.x-0.5f,transform.position.y-0.5f),mask);
+				if(!dead){
+					if(col){
+						if(col.tag == "PointTrigger"){
+							if(prevPoint != col.gameObject){
+								prevPoint = col.gameObject;
+								points++;
+							}
+						}else if(col.gameObject.tag == "Pipe" || col.gameObject.tag == "Ground"){
+							velocity*=-1;
+							SetDead();
 						}
-					}else if(col.gameObject.tag == "Pipe" || col.gameObject.tag == "Ground"){
-						velocity*=-1;
-						SetDead();
 					}
 				}
+
+
+				//transform.right = new Vector3(velocity.x+0.5f,velocity.y,0);//+Vector2.right*1;
 			}
-
-
-			//transform.right = new Vector3(velocity.x+0.5f,velocity.y,0);//+Vector2.right*1;
-		}
+		//}
 	}
 
 	void LateUpdate(){
