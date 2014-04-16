@@ -24,7 +24,8 @@ public class birdVision : MonoBehaviour {
 
 		BC = GetComponent<birdController>();
 
-		floatOutPuts = new float[5];
+		floatOutPuts = new float[6];
+		EvolutionSettings.instance.numInputs = floatOutPuts.Length;
 	}
 	
 	// Update is called once per frame
@@ -44,12 +45,11 @@ public class birdVision : MonoBehaviour {
 			//floatOutPuts[3] = pipeGenerator.instance.closestGap.transform.position.y;
 			floatOutPuts[3] = pipeGenerator.instance.closestGap.transform.position.y-transform.position.y;
 			floatOutPuts[4] = pipeGenerator.instance.closestGap.transform.localScale.y;
-		
-			floatOutPuts[0] += floatOutPuts[0]*Random.Range(-VA,VA);
-			floatOutPuts[1] += floatOutPuts[1]*Random.Range(-VA,VA);
-			floatOutPuts[2] += floatOutPuts[2]*Random.Range(-VA,VA);
-			floatOutPuts[3] += floatOutPuts[3]*Random.Range(-VA,VA);
-			floatOutPuts[4] += floatOutPuts[4]*Random.Range(-VA,VA);
+			floatOutPuts[5] = BC.velocity.y;
+
+			for(int i=0;i<floatOutPuts.Length;i++){
+				floatOutPuts[i] += floatOutPuts[i]*Random.Range(-VA,VA);
+			}
 
 		}
 	}

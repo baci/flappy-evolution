@@ -9,7 +9,7 @@ public class FlappyExperiment : SimpleNeatExperiment
 
 	public override int InputCount {
 		get {
-			return 5;
+			return EvolutionSettings.instance.numInputs;
 		}
 	}
 

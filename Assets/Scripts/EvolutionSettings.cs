@@ -9,6 +9,7 @@ public class EvolutionSettings : MonoBehaviour {
 	public string ComplexityRegulationStrategy;
 	public int ComplexityThreshold;
 
+	public int numInputs;
 
 	public static EvolutionSettings instance;
 	void Awake(){

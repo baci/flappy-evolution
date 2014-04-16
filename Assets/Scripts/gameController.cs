@@ -130,7 +130,7 @@ public class gameController : MonoBehaviour {
 	}
 
 	void setBirdStats(birdController bc){
-		bc.birdStats.vision = 0.5f;
+		bc.birdStats.vision = .2f;
 	}
 
 	void FixedUpdate(){

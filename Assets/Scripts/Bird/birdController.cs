@@ -59,6 +59,9 @@ public class birdController : MonoBehaviour {
 	}
 
 	void FixedUpdate(){
+		if(transform.position.x > 250){
+			SetDead();
+		}
 		//if(gameController.instance.isSimulating){
 			if(enabled){
 				pos = transform.position;
@@ -103,8 +106,7 @@ public class birdController : MonoBehaviour {
 			//velocity.y -= 0.01f;
 		}
 	}
-
-
+	
 
 	void destroyMe(){
 		gameController.instance.birdsAlive--;
