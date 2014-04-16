@@ -69,7 +69,6 @@ public class birdController : MonoBehaviour {
 								points++;
 							}
 						}else if(col.gameObject.tag == "Pipe" || col.gameObject.tag == "Ground"){
-							velocity*=-1;
 							SetDead();
 						}
 					}
@@ -116,6 +115,7 @@ public class birdController : MonoBehaviour {
 
 	public void SetDead(){
 		if(!dead){
+			velocity = new Vector2(velocity.x*Random.Range(-0.5f,-1.5f),velocity.y*Random.Range(-0.5f,-1.5f));
 			dead = true;
 			birdStatistics.instance.BirdDied(points, transform.position.x, ID);
 			vision.enabled = false;
