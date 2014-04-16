@@ -203,6 +203,8 @@ public abstract class SimpleNeatExperiment /*: INeatExperiment*/
 		//TODO: make sure I haven't broke everything
 	    // Create genome2 decoder.
 	    IGenomeDecoder<NeatGenome, IBlackBox> genomeDecoder = new NeatGenomeDecoder(_activationScheme);
+		//Vince says: Genome decoder for the game controller
+		gameController.instance.genomeDecoder = new NeatGenomeDecoder(_activationScheme);
 
 	    // Create a genome2 list evaluator. This packages up the genome2 decoder with the genome2 evaluator.
 	    IGenomeListEvaluator<NeatGenome> genomeListEvaluator = new SerialGenomeListEvaluator<NeatGenome, IBlackBox>(genomeDecoder, PhenomeEvaluator);

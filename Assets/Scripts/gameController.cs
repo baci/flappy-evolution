@@ -7,6 +7,8 @@ using SharpNeat.Genomes.Neat;
 
 public class gameController : MonoBehaviour {
 
+	public IGenomeDecoder<NeatGenome, IBlackBox> genomeDecoder;
+
 	public float gravity;
 	public float forwardSpeed;
 
@@ -62,13 +64,14 @@ public class gameController : MonoBehaviour {
 		//newRound();
 	}
 
+
 	public void ResetRound(List<NeatGenome> list){
 		newRound();
 
 		List<IBlackBox> _blackBoxes = new List<IBlackBox>();
 		foreach (NeatGenome genome in list)
 		{
-			_blackBoxes.Add(genome.CachedPhenome as IBlackBox);
+			_blackBoxes.Add(genomeDecoder.Decode(genome));
 		}
 
 		allBrains = _blackBoxes;
