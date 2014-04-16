@@ -50,29 +50,34 @@ public class gameController : MonoBehaviour {
 			allBirds.Add(bc);
 		}
 
-		newRound();
+		//newRound();
 	}
 
-	public void IDontEvenCare(List<NeatGenome> list){
+	public void ResetRound(List<NeatGenome> list){
+		newRound();
+
 		List<IBlackBox> _blackBoxes = new List<IBlackBox>();
 		foreach (NeatGenome genome in list)
 		{
 			_blackBoxes.Add(genome.CachedPhenome as IBlackBox);
 		}
 
+		for(int i=0;i< allBirds.Count;i++){
+			allBirds[i].AI.myBrain = allBrains[i];
+		}
+
 		allBrains = _blackBoxes;
 		print("It worked, I guess");
 		//------------------does not happen yet!------------
-		newRound();
 	}
 
 	void newRound(){
 		generation++;
 		print("starting generation "+generation);
 
-		Vector3 campos = Camera.main.transform.position;
-		campos.x = 0;
-		Camera.main.transform.position = campos;
+		Vector3 camPos = Camera.main.transform.position;
+		camPos.x = 0;
+		Camera.main.transform.position = camPos;
 
 		pipeGenerator.instance.Clear();
 		pipeGenerator.instance.GenerateStart();
@@ -107,7 +112,7 @@ public class gameController : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		if(birdsAlive == 0){
-			newRound();
+			//newRound();
 			//TODO: tell something that the generation is done
 		}
 	}

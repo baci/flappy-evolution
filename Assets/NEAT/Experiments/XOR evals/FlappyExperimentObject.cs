@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -61,7 +61,7 @@ public class FlappyExperimentObject : MonoBehaviour {
 			//TODO: exit Waiting to Start mode and 
 			
 			if(gameController.instance != null){
-				gameController.instance.IDontEvenCare(_ea._genomeList);
+				gameController.instance.ResetRound(_ea._genomeList);
 				_ea._currentStatus = HaxorsEvolutionAlgorithm<NeatGenome>.SimulationStatus.RUNNING;
 			}
 			
