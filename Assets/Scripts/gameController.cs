@@ -26,7 +26,14 @@ public class gameController : MonoBehaviour {
 
 	public static gameController instance;
 
-	public bool isSimulating = false;
+	public bool _isSimulating = false;
+	public bool isSimulating {
+		get{ return _isSimulating;}
+		set{
+			_isSimulating = value;
+			Debug.Log("isSimulating changed to " + value);
+		}
+	}
 
 	void Awake(){
 		instance = this;
@@ -61,12 +68,7 @@ public class gameController : MonoBehaviour {
 		List<IBlackBox> _blackBoxes = new List<IBlackBox>();
 		foreach (NeatGenome genome in list)
 		{
-			if(genome.CachedPhenome is IBlackBox){
-				_blackBoxes.Add(genome.CachedPhenome as IBlackBox);
-			}
-			else{
-				Debug.Log("Something is awry!");
-			}
+			_blackBoxes.Add(genome.CachedPhenome as IBlackBox);
 		}
 
 		allBrains = _blackBoxes;
@@ -81,6 +83,8 @@ public class gameController : MonoBehaviour {
 
 		print("It worked, I guess");
 		//------------------does not happen yet!------------
+		
+		isSimulating = true;
 	}
 
 	void newRound(){
@@ -101,8 +105,6 @@ public class gameController : MonoBehaviour {
 			ResetBird(bc);
 			setBirdStats(bc);
 		}
-
-		isSimulating = true;
 
 	}
 
@@ -128,7 +130,9 @@ public class gameController : MonoBehaviour {
 
 		if(birdsAlive == 0){
 			isSimulating = false;
-			FlappyExperimentObject._ea._currentStatus = HaxorsEvolutionAlgorithm<NeatGenome>.SimulationStatus.ENDING;
+			FlappyExperimentObject._ea.currentStatus = HaxorsEvolutionAlgorithm<NeatGenome>.SimulationStatus.ENDING;
+			FlappyExperimentObject._ea.FinishGeneration();
+			FlappyExperimentObject._ea.FinishGeneration();
 			//newRound();
 			//TODO: tell something that the generation is done
 		}

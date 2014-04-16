@@ -42,6 +42,8 @@ public class FlappyExperimentObject : MonoBehaviour {
 
 	private void Update()
 	{
+		//if(!gameController.instance.isSimulating) return;
+
 		if(Input.GetKeyDown(KeyCode.Escape))
 		{
 			if(_ea != null)
@@ -62,7 +64,7 @@ public class FlappyExperimentObject : MonoBehaviour {
 			
 			if(gameController.instance != null){
 				gameController.instance.ResetRound(_ea._genomeList);
-				_ea._currentStatus = HaxorsEvolutionAlgorithm<NeatGenome>.SimulationStatus.RUNNING;
+				_ea.currentStatus = HaxorsEvolutionAlgorithm<NeatGenome>.SimulationStatus.RUNNING;
 			}
 			
 			_ea.rebuildGenList = false;

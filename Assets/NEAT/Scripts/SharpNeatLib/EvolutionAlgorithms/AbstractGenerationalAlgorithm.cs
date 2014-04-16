@@ -278,8 +278,9 @@ namespace SharpNeat.EvolutionAlgorithms
                     }
                 }
             }
-            catch(ThreadAbortException)
+            catch(ThreadAbortException e)
             {   // Quietly exit thread.
+				Debug.Log("Something went wrong and AbstractGeenrationalAlgorithm decided to quit!\n"+e.Message);
             }
         }
 
