@@ -26,7 +26,7 @@ public class flappyAI : MonoBehaviour {
 
 				float outPut = (float)myBrain.OutputSignalArray[0];
 				if(outPut > 0.5f){
-					BC.Flap();
+					BC.Flap(0.5f);
 				}
 			}else{
 				Debug.LogError("Bird "+BC.ID+" does not have a brain");

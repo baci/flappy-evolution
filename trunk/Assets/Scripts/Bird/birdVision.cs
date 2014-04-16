@@ -16,26 +16,41 @@ public class birdVision : MonoBehaviour {
 
 	float[] floatOutPuts;
 
+	birdController BC;
+
 	// Use this for initialization
 	void Awake () {
 		output = new RaycastHit2D[raycastDirections.Count];
 
-		floatOutPuts = new float[4];
-		/*
-		 * 0 = bird height
-		 * 1 = x distance to closest pipe
-		 * 2 = y difference to gap center
-		 * 3 = gap y size
-		 * */
+		BC = GetComponent<birdController>();
+
+		floatOutPuts = new float[5];
 	}
 	
 	// Update is called once per frame
 	void FixedUpdate () {
+		float VA = BC.birdStats.vision;
 		if(gameController.instance.isSimulating){
-			floatOutPuts[0] = transform.position.y;
-			floatOutPuts[1] = pipeGenerator.instance.closestGap.transform.position.x-transform.position.x;
-			floatOutPuts[2] = pipeGenerator.instance.closestGap.transform.position.y-transform.position.y;
-			floatOutPuts[3] = pipeGenerator.instance.closestGap.transform.localScale.y;
+			/*
+			 * 0 = distance from roof
+			 * 1 = distance from floor
+			 * 2 = x distance to closest pipe
+			 * 3 = y difference to gap center
+			 * 4 = gap y size
+			 * */
+			floatOutPuts[0] = 5-transform.position.y;
+			floatOutPuts[1] = -5-transform.position.y;
+			floatOutPuts[2] = pipeGenerator.instance.closestGap.transform.position.x-transform.position.x;
+			//floatOutPuts[3] = pipeGenerator.instance.closestGap.transform.position.y;
+			floatOutPuts[3] = pipeGenerator.instance.closestGap.transform.position.y-transform.position.y;
+			floatOutPuts[4] = pipeGenerator.instance.closestGap.transform.localScale.y;
+		
+			floatOutPuts[0] += floatOutPuts[0]*Random.Range(-VA,VA);
+			floatOutPuts[1] += floatOutPuts[1]*Random.Range(-VA,VA);
+			floatOutPuts[2] += floatOutPuts[2]*Random.Range(-VA,VA);
+			floatOutPuts[3] += floatOutPuts[3]*Random.Range(-VA,VA);
+			floatOutPuts[4] += floatOutPuts[4]*Random.Range(-VA,VA);
+
 		}
 	}
 

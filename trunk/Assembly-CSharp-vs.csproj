@@ -5,7 +5,7 @@
 	<Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
 	<ProductVersion>10.0.20506</ProductVersion>
 	<SchemaVersion>2.0</SchemaVersion>
-	<ProjectGuid>{DD59BFFA-8E37-DCFB-3225-46483497989B}</ProjectGuid>
+	<ProjectGuid>{6A0C6E1A-61CA-4B3E-4231-174E97FF851A}</ProjectGuid>
 	<OutputType>Library</OutputType>
 	<AppDesignerFolder>Properties</AppDesignerFolder>
 	<RootNamespace></RootNamespace>
@@ -210,6 +210,8 @@
      <Compile Include="Assets\Scripts\Bird\birdStatistics.cs" />
      <Compile Include="Assets\Scripts\Bird\birdVision.cs" />
      <Compile Include="Assets\Scripts\Bird\flappyAI.cs" />
+     <Compile Include="Assets\Scripts\EvolutionSettings.cs" />
+     <Compile Include="Assets\Scripts\Misc\ShowStats.cs" />
      <Compile Include="Assets\Scripts\cameraController.cs" />
      <Compile Include="Assets\Scripts\gameController.cs" />
      <Compile Include="Assets\Scripts\world\PipeGap.cs" />
