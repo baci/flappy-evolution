@@ -26,6 +26,8 @@ public class gameController : MonoBehaviour {
 
 	public static gameController instance;
 
+	public bool isSimulating = false;
+
 	void Awake(){
 		instance = this;
 	}
@@ -62,11 +64,12 @@ public class gameController : MonoBehaviour {
 			_blackBoxes.Add(genome.CachedPhenome as IBlackBox);
 		}
 
+		allBrains = _blackBoxes;
+
 		for(int i=0;i< allBirds.Count;i++){
 			allBirds[i].AI.myBrain = allBrains[i];
 		}
 
-		allBrains = _blackBoxes;
 		print("It worked, I guess");
 		//------------------does not happen yet!------------
 	}
@@ -90,6 +93,7 @@ public class gameController : MonoBehaviour {
 			setBirdStats(bc);
 		}
 
+		isSimulating = true;
 
 	}
 
@@ -112,6 +116,7 @@ public class gameController : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		if(birdsAlive == 0){
+			isSimulating = false;
 			//newRound();
 			//TODO: tell something that the generation is done
 		}

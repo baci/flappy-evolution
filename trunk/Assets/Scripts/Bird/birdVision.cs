@@ -31,25 +31,12 @@ public class birdVision : MonoBehaviour {
 	
 	// Update is called once per frame
 	void FixedUpdate () {
-
-		floatOutPuts[0] = transform.position.y;
-		floatOutPuts[1] = pipeGenerator.instance.closestGap.transform.position.x-transform.position.x;
-		floatOutPuts[2] = pipeGenerator.instance.closestGap.transform.position.y-transform.position.y;
-		floatOutPuts[3] = pipeGenerator.instance.closestGap.transform.localScale.y;
-
-		/*
-		foreach(float f in floatOutPuts){
-			print(f);
-		}*/
-
-		/*
-		for(int i=0;i<raycastDirections.Count;i++){
-			pos = new Vector2(transform.position.x,transform.position.y);
-			RaycastHit2D hit = Physics2D.Raycast(pos +raycastPositions[i],raycastDirections[i] , raycastRanges[i], mask);
-
-			output[i] = hit;
+		if(gameController.instance.isSimulating){
+			floatOutPuts[0] = transform.position.y;
+			floatOutPuts[1] = pipeGenerator.instance.closestGap.transform.position.x-transform.position.x;
+			floatOutPuts[2] = pipeGenerator.instance.closestGap.transform.position.y-transform.position.y;
+			floatOutPuts[3] = pipeGenerator.instance.closestGap.transform.localScale.y;
 		}
-		*/
 	}
 
 	public float getOutputValue(int num){

@@ -16,19 +16,21 @@ public class flappyAI : MonoBehaviour {
 
 	// Update is called once per frame
 	void FixedUpdate () {
-		if(myBrain != null){
-			myBrain.ResetState();
-			for(int i = 0; i<BC.vision.numOutputs();i++){
-				myBrain.InputSignalArray[i] = BC.vision.getOutputValue(i);
-			}
-			myBrain.Activate();
+		if(gameController.instance.isSimulating){
+			if(myBrain != null){
+				myBrain.ResetState();
+				for(int i = 0; i<BC.vision.numOutputs();i++){
+					myBrain.InputSignalArray[i] = BC.vision.getOutputValue(i);
+				}
+				myBrain.Activate();
 
-			float outPut = (float)myBrain.OutputSignalArray[0];
-			if(outPut > 0.5f){
-				BC.Flap();
+				float outPut = (float)myBrain.OutputSignalArray[0];
+				if(outPut > 0.5f){
+					BC.Flap();
+				}
+			}else{
+				Debug.LogError("Bird "+BC.ID+" does not have a brain (yet)");
 			}
-		}else{
-			Debug.LogError("Bird "+BC.ID+" does not have a brain");
 		}
 
 		/*
