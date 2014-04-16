@@ -68,7 +68,11 @@ public class gameController : MonoBehaviour {
 
 		for(int i=0;i< allBirds.Count;i++){
 			allBirds[i].AI.myBrain = allBrains[i];
+			if(allBrains[i]== null){
+				Debug.LogError("Brain "+i+" is invalid");
+			}
 		}
+		print("number of birds "+allBirds.Count+" number of brainz "+allBrains.Count);
 
 		print("It worked, I guess");
 		//------------------does not happen yet!------------

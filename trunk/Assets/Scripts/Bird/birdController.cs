@@ -114,7 +114,7 @@ public class birdController : MonoBehaviour {
 	}
 	*/
 
-	void SetDead(){
+	public void SetDead(){
 		if(!dead){
 			dead = true;
 			birdStatistics.instance.BirdDied(points, transform.position.x, ID);

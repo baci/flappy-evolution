@@ -16,7 +16,7 @@ public class flappyAI : MonoBehaviour {
 
 	// Update is called once per frame
 	void FixedUpdate () {
-		if(gameController.instance.isSimulating){
+		if(gameController.instance.isSimulating && !BC.dead){
 			if(myBrain != null){
 				myBrain.ResetState();
 				for(int i = 0; i<BC.vision.numOutputs();i++){
@@ -29,7 +29,9 @@ public class flappyAI : MonoBehaviour {
 					BC.Flap();
 				}
 			}else{
-				Debug.LogError("Bird "+BC.ID+" does not have a brain (yet)");
+				Debug.LogError("Bird "+BC.ID+" does not have a brain");
+				BC.SetDead();
+				birdStatistics.instance.BirdDied(-1,-1,BC.ID);
 			}
 		}
 
