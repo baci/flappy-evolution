@@ -18,7 +18,9 @@ public class BirdsEvaluation : IPhenomeEvaluator<IBlackBox> {
 
 		gameController gc = gameController.instance;
 		int i = gc.allBrains.IndexOf(box);
+		if(i<0) return FitnessInfo.Zero;
 
+		Debug.Log("Evaluating bird " + i);
 		float dist = birdStatistics.instance.Distances[i];
 
 		FitnessInfo fitnessInfo = new FitnessInfo(dist*dist, dist*dist);

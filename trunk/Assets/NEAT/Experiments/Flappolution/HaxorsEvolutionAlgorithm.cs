@@ -15,7 +15,7 @@ where TGenome : class, IGenome<TGenome>  {
 		ENDING
 	}
 
-	public SimulationStatus _currentStatus = SimulationStatus.WAITING_TO_START;
+	public SimulationStatus currentStatus = SimulationStatus.WAITING_TO_START;
 	bool emptySpeciesFlag;
 	int offspringCount;
 	SpecieStats[] specieStatsArr;
@@ -23,10 +23,14 @@ where TGenome : class, IGenome<TGenome>  {
 
 	public bool rebuildGenList = false;
 
+	public void FinishGeneration(){
+		PerformOneGeneration();
+	}
+
 	protected override void PerformOneGeneration ()
 	{
-		Debug.Log("Performing a generation. Status = " + _currentStatus.ToString());
-		if(_currentStatus == SimulationStatus.WAITING_TO_START)
+		Debug.Log("Performing a generation. Status = " + currentStatus.ToString());
+		if(currentStatus == SimulationStatus.WAITING_TO_START)
 		{
 			// Calculate statistics for each specie (mean fitness, target size, number of offspring to produce etc.)
 			offspringCount = 0;
@@ -40,7 +44,7 @@ where TGenome : class, IGenome<TGenome>  {
 			
 			rebuildGenList = true;
 			return;
-		} else if (_currentStatus == SimulationStatus.RUNNING)
+		} else if (currentStatus == SimulationStatus.RUNNING)
 		{
 			//TODO: Lock until all birds are dead!
 			return;
@@ -97,7 +101,9 @@ where TGenome : class, IGenome<TGenome>  {
 			_eaParams = _eaParamsSimplifying;
 			break;
 		}
-		
+
+		currentStatus = SimulationStatus.WAITING_TO_START;
+
 		// TODO: More checks.
 		//Debug.Assert(_genomeList.Count == _populationSize)
 	}
