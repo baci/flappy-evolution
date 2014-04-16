@@ -24,7 +24,7 @@ public class gameController : MonoBehaviour {
 
 	GameObject birdHolder;
 
-	public List<SharpNeat.Phenomes.IBlackBox> allBrains = new List<SharpNeat.Phenomes.IBlackBox>();
+	public List<IBlackBox> allBrains = new List<IBlackBox>();
 
 	public List<birdController> allBirds = new List<birdController>();
 

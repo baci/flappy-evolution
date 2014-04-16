@@ -1,11 +1,13 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\gameController.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\NEAT\Scripts\SharpNeatLib\Phenomes\IBlackBox.cs">
     <Files>
-      <File FileName="Assets\Scripts\Bird\birdVision.cs" Line="45" Column="98" />
-      <File FileName="Assets\Scripts\Bird\birdController.cs" Line="38" Column="30" />
-      <File FileName="Assets\Scripts\gameController.cs" Line="133" Column="28" />
-      <File FileName="Assets\NEAT\Scripts\SharpNeatLib\SpeciationStrategies\KMeansClusteringStrategy.cs" Line="335" Column="1" />
+      <File FileName="Assets\Scripts\Bird\birdController.cs" Line="62" Column="31" />
+      <File FileName="Assets\NEAT\Experiments\Flappolution\HaxorsEvolutionAlgorithm.cs" Line="55" Column="33" />
+      <File FileName="Assets\Scripts\gameController.cs" Line="73" Column="21" />
+      <File FileName="Assets\NEAT\Experiments\XOR evals\FlappyExperimentObject.cs" Line="65" Column="40" />
+      <File FileName="Assets\NEAT\Experiments\Flappolution\BirdsEvaluation.cs" Line="14" Column="39" />
+      <File FileName="Assets\NEAT\Scripts\SharpNeatLib\Phenomes\IBlackBox.cs" Line="73" Column="27" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
