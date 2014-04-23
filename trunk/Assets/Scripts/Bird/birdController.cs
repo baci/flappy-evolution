@@ -37,6 +37,11 @@ public class birdController : MonoBehaviour {
 		public float size = 1;
 		public float startFood = 1;
 	}
+	public BirdRuntime birdRuntime = new BirdRuntime();
+	public class BirdRuntime{
+		public int numFlaps = 0;
+	}
+
 
 	// Use this for initialization
 	void Start () {
@@ -101,6 +106,7 @@ public class birdController : MonoBehaviour {
 		if(!dead && !hasFlapped){
 			velocity = new Vector2(velocity.x,flapForce*(amount*2));
 			hasFlapped = true;
+			birdRuntime.numFlaps ++;
 		}else{
 			//velocity.x *= 0.5f;
 			//velocity.y -= 0.01f;
@@ -130,7 +136,7 @@ public class birdController : MonoBehaviour {
 		if(!dead){
 			velocity = new Vector2(velocity.x*Random.Range(-0.5f,-1.5f),velocity.y*Random.Range(-0.5f,-1.5f));
 			dead = true;
-			birdStatistics.instance.BirdDied(points, transform.position.x, ID);
+			birdStatistics.instance.BirdDied(points, transform.position.x,birdRuntime.numFlaps, ID);
 			vision.enabled = false;
 			//gameController.instance.birdsAlive--;
 		}

@@ -1,13 +1,22 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\NEAT\Scripts\SharpNeatLib\Phenomes\IBlackBox.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\NEAT\Experiments\Flappolution\BirdsEvaluation.cs">
     <Files>
-      <File FileName="Assets\Scripts\Bird\birdController.cs" Line="62" Column="31" />
-      <File FileName="Assets\NEAT\Experiments\Flappolution\HaxorsEvolutionAlgorithm.cs" Line="55" Column="33" />
-      <File FileName="Assets\Scripts\gameController.cs" Line="73" Column="21" />
-      <File FileName="Assets\NEAT\Experiments\XOR evals\FlappyExperimentObject.cs" Line="65" Column="40" />
-      <File FileName="Assets\NEAT\Experiments\Flappolution\BirdsEvaluation.cs" Line="14" Column="39" />
-      <File FileName="Assets\NEAT\Scripts\SharpNeatLib\Phenomes\IBlackBox.cs" Line="73" Column="27" />
+      <File FileName="Assets\Scripts\Bird\birdController.cs" Line="1" Column="1" />
+      <File FileName="Assets\NEAT\Experiments\Flappolution\HaxorsEvolutionAlgorithm.cs" Line="55" Column="29" />
+      <File FileName="Assets\Scripts\gameController.cs" Line="92" Column="81" />
+      <File FileName="Assets\NEAT\Experiments\XOR evals\FlappyExperimentObject.cs" Line="32" Column="83" />
+      <File FileName="Assets\NEAT\Experiments\Flappolution\BirdsEvaluation.cs" Line="24" Column="11" />
+      <File FileName="Assets\NEAT\Scripts\SharpNeatLib\Phenomes\IBlackBox.cs" Line="73" Column="1" />
+      <File FileName="Assets\NEAT\Scripts\SharpNeatLib\Phenomes\NeuralNets\CyclicNetwork\CyclicNetwork.cs" Line="95" Column="7" />
+      <File FileName="Assets\NEAT\Scripts\SharpNeatLib\Phenomes\NeuralNets\FastCyclicNetwork\FastCyclicNetwork.cs" Line="133" Column="7" />
+      <File FileName="Assets\NEAT\Scripts\SharpNeatLib\Phenomes\NeuralNets\AcyclicNetwork\FastAcyclicNetwork.cs" Line="154" Column="7" />
+      <File FileName="Assets\NEAT\Experiments\Flappolution\FlappyExperiment.cs" Line="7" Column="30" />
+      <File FileName="Assets\NEAT\Scripts\SharpNeatLib\Core\FitnessInfo.cs" Line="30" Column="34" />
+      <File FileName="Assets\NEAT\Scripts\SharpNeatLib\Core\IPhenomeEvaluator.cs" Line="42" Column="20" />
+      <File FileName="Assets\NEAT\Scripts\SharpNeatLib\Core\SerialGenomeListEvaluator.cs" Line="136" Column="58" />
+      <File FileName="Assets\NEAT\Experiments\SimpleNeatExperiment.cs" Line="182" Column="66" />
+      <File FileName="Assets\NEAT\Scripts\SharpNeatLib\Core\IGenomeFactory.cs" Line="37" Column="36" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

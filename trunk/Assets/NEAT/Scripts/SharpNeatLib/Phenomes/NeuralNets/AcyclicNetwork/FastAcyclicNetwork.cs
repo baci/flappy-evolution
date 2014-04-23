@@ -17,6 +17,8 @@
  * along with SharpNEAT.  If not, see <http://www.gnu.org/licenses/>.
  */
 using SharpNeat.Network;
+using UnityEngine;
+using System.Collections;
 
 namespace SharpNeat.Phenomes.NeuralNets
 {
@@ -138,6 +140,25 @@ namespace SharpNeat.Phenomes.NeuralNets
         #endregion
 
         #region IBlackBox Members
+
+		int theBrainID = -1;
+
+		public int BrainID
+		{
+			get { 
+				//Debug.Log("Getting brain ID "+theBrainID); 
+				return theBrainID; 
+			}
+			set { 
+				theBrainID = value; 
+				//Debug.Log("Setting brain ID "+value); 
+			}
+		}
+
+		public string getName
+		{
+			get{return "FastAcyclicNetwork";}
+		}
 
         /// <summary>
         /// Gets the number of inputs.

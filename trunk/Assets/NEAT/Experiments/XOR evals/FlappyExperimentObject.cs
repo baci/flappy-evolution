@@ -53,6 +53,7 @@ public class FlappyExperimentObject : MonoBehaviour {
 
 		if(_ea.rebuildGenList)
 		{
+			print("Rebuilding Genome List");
 			// Rebuild _genomeList. It will now contain just the elite genomes.
 			_ea.RebuildGenomeList();
 			

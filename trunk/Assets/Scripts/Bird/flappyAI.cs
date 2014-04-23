@@ -31,7 +31,7 @@ public class flappyAI : MonoBehaviour {
 			}else{
 				Debug.LogError("Bird "+BC.ID+" does not have a brain");
 				BC.SetDead();
-				birdStatistics.instance.BirdDied(-1,-1,BC.ID);
+				birdStatistics.instance.BirdDied(-1,-1,-1,BC.ID);
 			}
 		}
 

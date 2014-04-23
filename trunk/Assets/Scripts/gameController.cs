@@ -83,15 +83,13 @@ public class gameController : MonoBehaviour {
 
 		for(int i=0;i< allBirds.Count;i++){
 			allBirds[i].AI.myBrain = allBrains[i];
+			allBirds[i].AI.myBrain.BrainID = i;
+//			print("Setting brain ID "+i);
 			if(allBrains[i]== null){
-				//Debug.LogError("Brain "+i+" is invalid");
+				Debug.LogError("Brain "+i+" is invalid");
 			}
 		}
-		print("number of birds "+allBirds.Count+" number of brainz "+allBrains.Count);
-
-		print("It worked, I guess");
-		//------------------does not happen yet!------------
-		
+		print("number of birds "+allBirds.Count+" number of brainz "+allBrains.Count);		
 		isSimulating = true;
 	}
 
@@ -126,6 +124,7 @@ public class gameController : MonoBehaviour {
 		bc.velocity *= 0;
 		bc.points = 0;
 		bc.enabled = true;
+		bc.birdRuntime = new birdController.BirdRuntime();
 
 	}
 
