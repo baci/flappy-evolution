@@ -17,6 +17,8 @@
  * along with SharpNEAT.  If not, see <http://www.gnu.org/licenses/>.
  */
 using System.Collections.Generic;
+using UnityEngine;
+using System.Collections;
 
 // Disables missing comment warnings for non-private variables.
 #pragma warning disable 1591
@@ -84,6 +86,25 @@ namespace SharpNeat.Phenomes.NeuralNets
         #endregion
 
         #region IBlackBox Members
+
+		int theBrainID = -1;
+		
+		public int BrainID
+		{
+			get { 
+				//Debug.Log("Getting brain ID "+theBrainID); 
+				return theBrainID;
+			}
+			set { 
+				theBrainID = value; 
+				//Debug.Log("Setting brain ID "+value); 
+			}
+		}
+
+		public string getName
+		{
+			get{return "CyclicNetwork";}
+		}
 
         /// <summary>
         /// Gets the number of inputs.
