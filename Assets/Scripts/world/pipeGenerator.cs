@@ -9,6 +9,12 @@ public class pipeGenerator : MonoBehaviour {
 	public GameObject closestGap;
 
 	public float pipeDistance;
+
+	public float gapSize;
+
+	public float gapSizeDecrease;
+
+	public float minGapSize;
 	//public int numStartPipes;
 
 	GameObject pipeHolder;
