@@ -22,6 +22,8 @@ public class gameController : MonoBehaviour {
 
 	public int birdsAlive;
 
+	public float maxDistance;
+
 	GameObject birdHolder;
 
 	public List<IBlackBox> allBrains = new List<IBlackBox>();
@@ -39,7 +41,7 @@ public class gameController : MonoBehaviour {
 		}
 	}
 
-	[Range(1,100)]
+	[Range(0,100)]
 	public float timeScale = 1;
 
 	void Awake(){

@@ -64,7 +64,7 @@ public class birdController : MonoBehaviour {
 	}
 
 	void FixedUpdate(){
-		if(transform.position.x > 50){
+		if(transform.position.x > gameController.instance.maxDistance){
 			SetDead();
 		}
 		//if(gameController.instance.isSimulating){
