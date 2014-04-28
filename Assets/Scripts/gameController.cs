@@ -72,13 +72,14 @@ public class gameController : MonoBehaviour {
 	}
 
 
-	public void ResetRound(List<NeatGenome> list){
+	public void ResetRound(List<NeatGenome> genomeList){
 		newRound();
 
 		List<IBlackBox> _blackBoxes = new List<IBlackBox>();
-		foreach (NeatGenome genome in list)
+		foreach (NeatGenome genome in genomeList)
 		{
-			_blackBoxes.Add(genomeDecoder.Decode(genome));
+			genome.CachedPhenome = genomeDecoder.Decode(genome);
+			_blackBoxes.Add(genome.CachedPhenome as IBlackBox);
 		}
 
 		allBrains = _blackBoxes;
@@ -86,6 +87,7 @@ public class gameController : MonoBehaviour {
 		for(int i=0;i< allBirds.Count;i++){
 			allBirds[i].AI.myBrain = allBrains[i];
 			allBirds[i].AI.myBrain.BrainID = i;
+			(genomeList[i].CachedPhenome as IBlackBox).BrainID = i;
 //			print("Setting brain ID "+i);
 			if(allBrains[i]== null){
 				Debug.LogError("Brain "+i+" is invalid");

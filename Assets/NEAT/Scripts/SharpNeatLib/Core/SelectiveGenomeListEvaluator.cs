@@ -78,7 +78,7 @@ namespace SharpNeat.Core
         /// Evaluates a list of genomes. Here we select the genomes to be evaluated before invoking
         /// _innerEvaluator to evaluate them.
         /// </summary>
-        public void Evaluate(IList<TGenome> genomeList)
+        public void Evaluate(List<TGenome> genomeList)
         {
             // Select the genomes to be evaluated. Place them in a temporary list of genomes to be 
             // evaluated after the genome selection loop. The selection is not performed in series

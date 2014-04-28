@@ -21,6 +21,7 @@ public class BirdsEvaluation : IPhenomeEvaluator<IBlackBox> {
 			// TODO
 			//------------------PROBLEM: Box always has id=-1, meaning its a new brain, not from the list. allbrains.id is correct...
 			//Debug.Log("BOX "+box.BrainID+" brain "+gc.allBrains[i].BrainID);
+			// TODO: why not just try with brainID = i, isnt it the same order?
 			if(box.BrainID == gc.allBrains[i].BrainID){
 				break;
 			}

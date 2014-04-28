@@ -17,6 +17,7 @@
  * along with SharpNEAT.  If not, see <http://www.gnu.org/licenses/>.
  */
 using System.Collections.Generic;
+using UnityEngine;
 
 namespace SharpNeat.Core
 {
@@ -40,7 +41,7 @@ namespace SharpNeat.Core
         readonly IPhenomeEvaluator<TPhenome> _phenomeEvaluator;
         readonly bool _enablePhenomeCaching;
 
-        delegate void EvaluationMethod(IList<TGenome> genomeList);
+        delegate void EvaluationMethod(List<TGenome> genomeList);
 
         #region Constructor
 
@@ -101,7 +102,7 @@ namespace SharpNeat.Core
         /// Evaluates a list of genomes. Here we decode each genome in series using the contained
         /// IGenomeDecoder and evaluate the resulting TPhenome using the contained IPhenomeEvaluator.
         /// </summary>
-        public void Evaluate(IList<TGenome> genomeList)
+        public void Evaluate(List<TGenome> genomeList)
         {
             _evaluationMethod(genomeList);
         }
@@ -118,13 +119,13 @@ namespace SharpNeat.Core
 
         #region Private Methods
 
-        private void Evaluate_NonCaching(IList<TGenome> genomeList)
+        private void Evaluate_NonCaching(List<TGenome> genomeList)
         {
             // Decode and evaluate each genome in turn.
             foreach(TGenome genome in genomeList)
             {
                 TPhenome phenome = _genomeDecoder.Decode(genome);
-                if(null == phenome)
+                if(phenome == null)
                 {   // Non-viable genome.
                     genome.EvaluationInfo.SetFitness(0.0);
                     genome.EvaluationInfo.AuxFitnessArr = null;
@@ -138,27 +139,28 @@ namespace SharpNeat.Core
             }
         }
 
-        private void Evaluate_Caching(IList<TGenome> genomeList)
+        private void Evaluate_Caching(List<TGenome> genomeList)
         {
             // Decode and evaluate each genome in turn.
             foreach(TGenome genome in genomeList)
             {
                 TPhenome phenome = (TPhenome)genome.CachedPhenome;
-                if(null == phenome) 
+                if(phenome == null) 
                 {   // Decode the phenome and store a ref against the genome.
+					// TODO: brainID is always -1 - why?? genome looks perfectly fine here
                     phenome = _genomeDecoder.Decode(genome);
                     genome.CachedPhenome = phenome;
                 }
 
-                if(null == phenome)
+                if(phenome == null)
                 {   // Non-viable genome.
                     genome.EvaluationInfo.SetFitness(0.0);
                     genome.EvaluationInfo.AuxFitnessArr = null;
                 }
                 else
                 {   
-                    FitnessInfo fitnessInfo = _phenomeEvaluator.Evaluate(phenome);
-                    genome.EvaluationInfo.SetFitness(fitnessInfo._fitness);
+					FitnessInfo fitnessInfo = _phenomeEvaluator.Evaluate(phenome);
+					genome.EvaluationInfo.SetFitness(fitnessInfo._fitness);
                     genome.EvaluationInfo.AuxFitnessArr = fitnessInfo._auxFitnessArr;
                 }
             }
