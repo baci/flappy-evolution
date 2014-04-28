@@ -16,28 +16,18 @@ public class FlappyExperimentObject : MonoBehaviour {
 	public static HaxorsEvolutionAlgorithm<NeatGenome> _ea;
 	private XmlElement xml;
 
-	private void Start () {
-		XmlDocument xmlDoc = new XmlDocument();	
-		string filepath = Application.dataPath+"/XMLAssets/"+"xor-config.xml";
+	private void Start () 
+	{
+		Debug.Log("initializing experiment");		
+		experiment.Initialize("any name", null);
 		
-		if(File.Exists (filepath)) {
-			Debug.Log("loading XML config");
+		// Create evolution algorithm and attach update event.
+		_ea = (HaxorsEvolutionAlgorithm<NeatGenome>)experiment.CreateEvolutionAlgorithm();
+		_ea.UpdateEvent += new EventHandler(ea_UpdateEvent);
 
-			xmlDoc.Load(filepath); //Load the XML file
-			xml = xmlDoc.DocumentElement;
-
-			experiment.Initialize("any name", xml);
-
-			// Create evolution algorithm and attach update event.
-			_ea = (HaxorsEvolutionAlgorithm<NeatGenome>)experiment.CreateEvolutionAlgorithm();
-			_ea.UpdateEvent += new EventHandler(ea_UpdateEvent);
-			
-			// Start algorithm (it will run on a background thread).
-			_ea.StartContinue();
-		}
-		else
-			Debug.LogError("xml file not found: " + filepath);
-
+		Debug.Log("starting experiment");
+		// Start algorithm (it will run on a background thread).
+		_ea.StartContinue();
 	}
 
 	private void Update()

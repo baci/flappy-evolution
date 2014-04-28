@@ -28,20 +28,10 @@ public class birdStatistics : MonoBehaviour {
 		Fitness[ID] = distance-(numFlaps*0.1f);
 	}
 
-	// Use this for initialization
-	void Start () {
-	
-	}
-
 	public void Clear(){
 		Scores = new float[Scores.Length];
 		Distances = new float[Distances.Length];
 		NumFlaps = new int[NumFlaps.Length];
 		Fitness = new float[Fitness.Length];
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
 	}
 }

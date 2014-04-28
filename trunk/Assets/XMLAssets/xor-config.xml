@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <Config>
-  <PopulationSize>25</PopulationSize>
+  <PopulationSize>2000</PopulationSize>
   <SpecieCount>10</SpecieCount>
   <Activation>
     <Scheme>FixedIters</Scheme>
     <Iters>2</Iters>
   </Activation>
   <ComplexityRegulationStrategy>Absolute</ComplexityRegulationStrategy>
-  <ComplexityThreshold>6</ComplexityThreshold>
+  <ComplexityThreshold>21</ComplexityThreshold>
   <Description>
     XOR evolution test.
 	1 + 0 = 1
