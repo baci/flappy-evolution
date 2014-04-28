@@ -44,7 +44,7 @@ namespace SharpNeat.Core
         /// <summary>
         /// Evaluates a list of genomes.
         /// </summary>
-        void Evaluate(IList<TGenome> genomeList);  
+        void Evaluate(List<TGenome> genomeList);  
 
         /// <summary>
         /// Reset the internal state of the evaluation scheme if any exists.
