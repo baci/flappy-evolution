@@ -8,6 +8,8 @@ public class cameraController : MonoBehaviour {
 	void FixedUpdate () {
 		if(gameController.instance.isSimulating)
 		transform.position += Vector3.right*gameController.instance.forwardSpeed;
+
+		//transform.eulerAngles += Vector3.forward;
 	}
 
 }

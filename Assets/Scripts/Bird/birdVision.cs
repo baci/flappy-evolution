@@ -24,8 +24,8 @@ public class birdVision : MonoBehaviour {
 
 		BC = GetComponent<birdController>();
 
-		floatOutPuts = new float[8];
-		EvolutionSettings.instance.numInputs = floatOutPuts.Length;
+		floatOutPuts = new float[EvolutionSettings.instance.numInputs];
+		//EvolutionSettings.instance.numInputs = floatOutPuts.Length;
 	}
 	
 	// Update is called once per frame
@@ -35,24 +35,35 @@ public class birdVision : MonoBehaviour {
 
 			//distance to top of world
 			floatOutPuts[0] = 5-transform.position.y;
+
 			//distance to bottom of world
 			floatOutPuts[1] = -5-transform.position.y;
+
 			//distance to closest gap
 			floatOutPuts[2] = pipeGenerator.instance.closestGap.transform.position.x-transform.position.x;
+
 			//floatOutPuts[3] = pipeGenerator.instance.closestGap.transform.position.y;
 
 			//gap size
 			floatOutPuts[3] = pipeGenerator.instance.closestGap.transform.localScale.y;
+
 			//y speed of the bird
 			floatOutPuts[4] = BC.velocity.y;
 
 			//distance to gap top
-			floatOutPuts[5] = pipeGenerator.instance.closestGap.transform.position.y-transform.position.y+pipeGenerator.instance.closestGap.transform.localScale.y;
+			floatOutPuts[5] = pipeGenerator.instance.closestGap.transform.position.y-transform.position.y+pipeGenerator.instance.closestGap.transform.localScale.y/2;
 
 			//distance to gap bottom
-			floatOutPuts[6] = pipeGenerator.instance.closestGap.transform.position.y-transform.position.y-pipeGenerator.instance.closestGap.transform.localScale.y;
+			floatOutPuts[6] = pipeGenerator.instance.closestGap.transform.position.y-transform.position.y-pipeGenerator.instance.closestGap.transform.localScale.y/2;
 
+			//gravity
 			floatOutPuts[7] = gameController.instance.gravity;
+
+			//vision
+			floatOutPuts[8] = VA;
+
+			//time since last flap
+			floatOutPuts[9] = BC.timeSinceLastFlap;
 
 			for(int i=0;i<floatOutPuts.Length;i++){
 				floatOutPuts[i] += floatOutPuts[i]*Random.Range(-VA,VA);

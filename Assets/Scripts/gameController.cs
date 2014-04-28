@@ -84,13 +84,17 @@ public class gameController : MonoBehaviour {
 
 		allBrains = _blackBoxes;
 
-		for(int i=0;i< allBirds.Count;i++){
-			allBirds[i].AI.myBrain = allBrains[i];
-			allBirds[i].AI.myBrain.BrainID = i;
-			(genomeList[i].CachedPhenome as IBlackBox).BrainID = i;
-//			print("Setting brain ID "+i);
-			if(allBrains[i]== null){
-				Debug.LogError("Brain "+i+" is invalid");
+		for(int i=0;i< Mathf.Min(allBirds.Count,allBrains.Count);i++){
+			if(allBirds[i] != null && allBrains[i] != null){
+				allBirds[i].AI.myBrain = allBrains[i];
+				allBirds[i].AI.myBrain.BrainID = i;
+				(genomeList[i].CachedPhenome as IBlackBox).BrainID = i;
+	//			print("Setting brain ID "+i);
+				if(allBrains[i]== null){
+					Debug.LogError("Brain "+i+" is invalid");
+				}
+			}else{
+				Debug.LogError("No bird for the brain");
 			}
 		}
 		print("number of birds "+allBirds.Count+" number of brainz "+allBrains.Count);		
@@ -146,6 +150,8 @@ public class gameController : MonoBehaviour {
 
 		if(birdsAlive == 0){
 			isSimulating = false;
+			EvolutionStats.instance.AnalyzeStats();
+
 			FlappyExperimentObject._ea.currentStatus = HaxorsEvolutionAlgorithm<NeatGenome>.SimulationStatus.ENDING;
 			FlappyExperimentObject._ea.FinishGeneration();
 			FlappyExperimentObject._ea.FinishGeneration();

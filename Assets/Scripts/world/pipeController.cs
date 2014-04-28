@@ -24,6 +24,7 @@ public class pipeController : MonoBehaviour {
 		//Vector3 posButtom = Vector3.zero;
 
 		posTop.y = topPipe.transform.localScale.y/2+scale.y/2;
+		//posTop.y = Mathf.Min(posTop.y,topPipe.transform.localScale.y/2+transform.position.y);
 		//posButtom.y = -buttomPipe.transform.localScale.y/2-scale.y/2;
 
 		topPipe.transform.localPosition = posTop;

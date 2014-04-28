@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+[ExecuteInEditMode]
 public class EvolutionSettings : MonoBehaviour {
 
 
@@ -21,9 +22,18 @@ public class EvolutionSettings : MonoBehaviour {
 	}
 
 	public int numInputs;
+	public int numOutputs;
 
 	public static EvolutionSettings instance;
 	void Awake(){
 		instance = this;
+	}
+
+	void OnValidate(){
+		ComplexityThreshold = Mathf.Max(ComplexityThreshold,(numInputs+numOutputs)*3);
+		SpecieCount = Mathf.Min(SpecieCount,PopulationSize);
+		SpecieCount = Mathf.Max(SpecieCount,1);
+		PopulationSize = Mathf.Max(PopulationSize,1);
+		//print((numInputs+numOutputs)*3);
 	}
 }

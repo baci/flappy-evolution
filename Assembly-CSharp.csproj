@@ -211,7 +211,9 @@
      <Compile Include="Assets\Scripts\Bird\birdVision.cs" />
      <Compile Include="Assets\Scripts\Bird\flappyAI.cs" />
      <Compile Include="Assets\Scripts\EvolutionSettings.cs" />
+     <Compile Include="Assets\Scripts\Misc\EvolutionStats.cs" />
      <Compile Include="Assets\Scripts\Misc\ShowStats.cs" />
+     <Compile Include="Assets\Scripts\Visualization\graphCreater.cs" />
      <Compile Include="Assets\Scripts\cameraController.cs" />
      <Compile Include="Assets\Scripts\gameController.cs" />
      <Compile Include="Assets\Scripts\world\PipeGap.cs" />
