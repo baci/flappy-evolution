@@ -61,7 +61,7 @@ public class FlappyExperimentObject : MonoBehaviour {
 			_ea.rebuildGenList = false;
 		}
 
-		Debug.Log((_ea._genomeList[0].CachedPhenome as IBlackBox).BrainID);
+		//Debug.Log((_ea._genomeList[0].CachedPhenome as IBlackBox).BrainID);
 	}
 
 	void OnApplicationQuit(){
@@ -72,8 +72,8 @@ public class FlappyExperimentObject : MonoBehaviour {
 
 	private static void ea_UpdateEvent(object sender, EventArgs e)
 	{
-		Debug.Log(string.Format("gen={0:N0} bestFitness={1:N6} meanFitness={2:N6} champComplexity={3:N3}",
-		                        _ea.CurrentGeneration, _ea.Statistics._maxFitness, _ea.Statistics._meanFitness, _ea.CurrentChampGenome.Complexity));
+		//Debug.Log(string.Format("gen={0:N0} bestFitness={1:N6} meanFitness={2:N6} champComplexity={3:N3}",
+		 //                       _ea.CurrentGeneration, _ea.Statistics._maxFitness, _ea.Statistics._meanFitness, _ea.CurrentChampGenome.Complexity));
 		/// Save the best genome to file
 		//var doc = NeatGenomeXmlIO.SaveComplete(
 		//	new List<NeatGenome>() {_ea.CurrentChampGenome}, 

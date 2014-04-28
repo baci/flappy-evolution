@@ -29,7 +29,7 @@ where TGenome : class, IGenome<TGenome>  {
 
 	protected override void PerformOneGeneration ()
 	{
-		Debug.Log("Performing a generation. Status = " + currentStatus.ToString());
+		//Debug.Log("Performing a generation. Status = " + currentStatus.ToString());
 		if(currentStatus == SimulationStatus.WAITING_TO_START)
 		{
 			// Calculate statistics for each specie (mean fitness, target size, number of offspring to produce etc.)

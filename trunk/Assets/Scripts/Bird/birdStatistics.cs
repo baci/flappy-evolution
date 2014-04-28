@@ -25,7 +25,7 @@ public class birdStatistics : MonoBehaviour {
 		Distances[ID] = distance;
 		NumFlaps[ID] = numFlaps;
 
-		Fitness[ID] = distance-(numFlaps*0.1f);
+		Fitness[ID] = Mathf.Max(0,distance-(numFlaps*0.1f));
 	}
 
 	public void Clear(){

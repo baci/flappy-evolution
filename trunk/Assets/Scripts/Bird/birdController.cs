@@ -28,6 +28,8 @@ public class birdController : MonoBehaviour {
 
 	bool hasFlapped = false;
 
+	public float timeSinceLastFlap;
+
 
 	public BirdStats birdStats = new BirdStats();
 	public class BirdStats{
@@ -67,6 +69,7 @@ public class birdController : MonoBehaviour {
 		if(transform.position.x > gameController.instance.maxDistance){
 			SetDead();
 		}
+		timeSinceLastFlap += Time.deltaTime;
 		//if(gameController.instance.isSimulating){
 			if(enabled){
 				pos = transform.position;
@@ -104,6 +107,7 @@ public class birdController : MonoBehaviour {
 
 	public void Flap(float amount){
 		if(!dead && !hasFlapped){
+			timeSinceLastFlap = 0;
 			velocity = new Vector2(velocity.x,flapForce*(amount*2));
 			hasFlapped = true;
 			birdRuntime.numFlaps ++;
