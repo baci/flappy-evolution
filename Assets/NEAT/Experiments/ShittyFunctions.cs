@@ -47,4 +47,18 @@ public class ShittyFunctions {
 		}
 		throw new ArgumentException(string.Format("Invalid or missing ActivationScheme XML config setting [{0}]", schemeStr));
 	}
+
+	public static NetworkActivationScheme CreateActivationScheme(EvolutionSettings.ActivationScheme scheme)
+	{
+		switch(scheme.scheme)
+		{
+		case "Acyclic":
+			return NetworkActivationScheme.CreateAcyclicScheme();
+		case "FixedIters":
+			return NetworkActivationScheme.CreateCyclicFixedTimestepsScheme(scheme.iters);
+		case "CyclicRelax":
+			return NetworkActivationScheme.CreateCyclicRelaxingActivationScheme(scheme.threshold, scheme.maxIters);
+		}
+		throw new ArgumentException(string.Format("Invalid or missing ActivationScheme setting [{0}]", scheme));
+	}
 }

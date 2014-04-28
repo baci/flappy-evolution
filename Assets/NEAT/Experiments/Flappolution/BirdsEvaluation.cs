@@ -18,6 +18,7 @@ public class BirdsEvaluation : IPhenomeEvaluator<IBlackBox> {
 		gameController gc = gameController.instance;
 		int i;// = gc.allBrains.IndexOf(box);
 		for(i = 0; i < gc.allBrains.Count; i++){
+			// TODO
 			//------------------PROBLEM: Box always has id=-1, meaning its a new brain, not from the list. allbrains.id is correct...
 			//Debug.Log("BOX "+box.BrainID+" brain "+gc.allBrains[i].BrainID);
 			if(box.BrainID == gc.allBrains[i].BrainID){
