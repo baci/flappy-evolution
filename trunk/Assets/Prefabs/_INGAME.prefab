@@ -50,8 +50,13 @@ MonoBehaviour:
   birdsAlive: 0
   maxDistance: 200
   allBirds: []
+  defaultMat: {fileID: 2100000, guid: 65a45ec9a04f82142a1add6754a3015a, type: 2}
+  birdMats: []
+  numSpeciseLeft: 
+  speciesLeft: 0
   _isSimulating: 0
-  timeScale: 1
+  framesPerSecond: 60
+  movementMulti: 1
 --- !u!114 &11400002
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -95,10 +100,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31ee5d4ae328c6744a01bb022401c893, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PopulationSize: 500
-  SpecieCount: 50
+  PopulationSize: 1999
+  SpecieCount: 10
   ComplexityRegulationStrategy: 3
-  ComplexityThreshold: 100
+  ComplexityThreshold: 33
   description: 
   activationScheme:
     scheme: FixedIters

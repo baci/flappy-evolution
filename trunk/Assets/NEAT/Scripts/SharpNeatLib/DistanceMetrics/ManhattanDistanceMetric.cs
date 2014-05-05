@@ -457,6 +457,7 @@ namespace SharpNeat.DistanceMetrics
             // Loop over coords.
             foreach(CoordinateVector coord in coordList)
             {
+				if(null == coord) continue;
                 // Loop over each element within the current coord.
                 foreach(KeyValuePair<ulong,double> coordElem in coord.CoordArray)
                 {
