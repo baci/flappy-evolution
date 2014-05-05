@@ -95,17 +95,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31ee5d4ae328c6744a01bb022401c893, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PopulationSize: 200
-  SpecieCount: 5
+  PopulationSize: 500
+  SpecieCount: 50
   ComplexityRegulationStrategy: 3
-  ComplexityThreshold: 30
+  ComplexityThreshold: 100
   description: 
   activationScheme:
     scheme: FixedIters
     iters: 2
     threshold: 0
     maxIters: 0
-  numInputs: 9
+  numInputs: 10
   numOutputs: 1
 --- !u!114 &11400008
 MonoBehaviour:
@@ -119,6 +119,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   topLengths: []
+  lowLengths: []
+  avgLengths: []
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

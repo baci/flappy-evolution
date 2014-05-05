@@ -105,6 +105,7 @@ public class gameController : MonoBehaviour {
 		generation++;
 		print("starting generation "+generation);
 
+
 		Vector3 camPos = Camera.main.transform.position;
 		camPos.x = 0;
 		Camera.main.transform.position = camPos;
