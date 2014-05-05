@@ -38,6 +38,7 @@ public class gameController : MonoBehaviour {
 	public Material defaultMat;
 	public Material[] birdMats;
 
+	public int[] initNumSpeciseLeft;
 	public int[] numSpeciseLeft;
 	public int speciesLeft;
 
@@ -75,7 +76,7 @@ public class gameController : MonoBehaviour {
 		//speciesColor = new Color[EvolutionSettings.instance.PopulationSize];
 		for(int i= 0;i<birdMats.Length;i++){
 			birdMats[i] = new Material(defaultMat);
-			birdMats[i].color = new Color(Random.Range(0f,1f),Random.Range(0f,1f),Random.Range(0f,1f),0.6f);
+			birdMats[i].color = new Color(Random.Range(0f,1f),Random.Range(0f,1f),Random.Range(0f,1f),0.5f);
 		}
 
 		for(int i=0;i< EvolutionSettings.instance.PopulationSize;i++){
@@ -86,6 +87,8 @@ public class gameController : MonoBehaviour {
 			setBirdStats(bc);
 			allBirds.Add(bc);
 		}
+
+		graphCreater.instance.CreateSpeciesGraphsGraphObjects();
 
 		//newRound();
 	}
@@ -127,9 +130,11 @@ public class gameController : MonoBehaviour {
 	}
 
 	void CalculateSpeciesNum(){
+		initNumSpeciseLeft = new int[EvolutionSettings.instance.SpecieCount];
 		numSpeciseLeft = new int[EvolutionSettings.instance.SpecieCount];
 		for(int i=0;i<allBirds.Count;i++){
 			numSpeciseLeft[allBirds[i].speciesID] ++;
+			initNumSpeciseLeft[allBirds[i].speciesID] ++;
 		}
 	}
 

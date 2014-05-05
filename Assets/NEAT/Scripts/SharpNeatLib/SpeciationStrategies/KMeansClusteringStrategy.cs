@@ -331,13 +331,23 @@ namespace SharpNeat.SpeciationStrategies
             List<TGenome> genomeList = specie.GenomeList;
             int count = genomeList.Count;
             List<CoordinateVector> coordList = new List<CoordinateVector>(count);
+
+			/*
 			TGenome lastGenome = genomeList[0];
-            for(int i=0; i<count; i++) {
-				if(genomeList[i] != null){
-					coordList.Add(genomeList[i].Position);
-				}else{
-					coordList.Add(lastGenome.Position);
+			for(int i=0; i<count; i++) {
+				if(genomeList[i].Position != null){
+					lastGenome = genomeList[i];
+					Debug.WriteLine("FOUND THINGY FOR THE THING");
+					break;
 				}
+			}*/
+
+            for(int i=0; i<count; i++) {
+				//if(genomeList[i] != null){
+					coordList.Add(genomeList[i].Position);
+				//}else{
+				//	coordList.Add(lastGenome.Position);
+				//}
 				
             }
 
