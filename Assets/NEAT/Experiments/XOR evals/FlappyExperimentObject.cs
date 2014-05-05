@@ -12,6 +12,11 @@ using SharpNeat.Core;
 
 public class FlappyExperimentObject : MonoBehaviour {
 
+	public static FlappyExperimentObject instance;
+	void Awake(){
+		instance = this;
+	}
+
 	private FlappyExperiment experiment = new FlappyExperiment();
 	public static HaxorsEvolutionAlgorithm<NeatGenome> _ea;
 	private XmlElement xml;

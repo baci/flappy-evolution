@@ -27,10 +27,19 @@ public class gameController : MonoBehaviour {
 	GameObject birdHolder;
 
 	public List<IBlackBox> allBrains = new List<IBlackBox>();
+	public List<NeatGenome> allGenomes = new List<NeatGenome>();
 
 	public List<birdController> allBirds = new List<birdController>();
 
 	public static gameController instance;
+
+	//public Color[] speciesColor;
+
+	public Material defaultMat;
+	public Material[] birdMats;
+
+	public int[] numSpeciseLeft;
+	public int speciesLeft;
 
 	public bool _isSimulating = false;
 	public bool isSimulating {
@@ -62,6 +71,13 @@ public class gameController : MonoBehaviour {
 
 		birdStatistics.instance.Init(EvolutionSettings.instance.PopulationSize);
 
+		birdMats = new Material[EvolutionSettings.instance.PopulationSize];
+		//speciesColor = new Color[EvolutionSettings.instance.PopulationSize];
+		for(int i= 0;i<birdMats.Length;i++){
+			birdMats[i] = new Material(defaultMat);
+			birdMats[i].color = new Color(Random.Range(0f,1f),Random.Range(0f,1f),Random.Range(0f,1f),0.6f);
+		}
+
 		for(int i=0;i< EvolutionSettings.instance.PopulationSize;i++){
 			GameObject g = Instantiate(birdPre) as GameObject;
 			g.transform.parent = birdHolder.transform;
@@ -85,23 +101,36 @@ public class gameController : MonoBehaviour {
 			_blackBoxes.Add(genome.CachedPhenome as IBlackBox);
 		}
 
+		allGenomes = genomeList;
 		allBrains = _blackBoxes;
 
 		for(int i=0;i< Mathf.Min(allBirds.Count,allBrains.Count);i++){
 			if(allBirds[i] != null && allBrains[i] != null){
 				allBirds[i].AI.myBrain = allBrains[i];
 				allBirds[i].AI.myBrain.BrainID = i;
+				allBirds[i].speciesID = allGenomes[i].SpecieIdx;
 				(genomeList[i].CachedPhenome as IBlackBox).BrainID = i;
 	//			print("Setting brain ID "+i);
 				if(allBrains[i]== null){
 					Debug.LogError("Brain "+i+" is invalid");
 				}
+				allBirds[i].renderer.material = birdMats[allGenomes[i].SpecieIdx];
 			}else{
 				Debug.LogError("No bird for the brain");
 			}
 		}
 		print("number of birds "+allBirds.Count+" number of brainz "+allBrains.Count);		
+
+		CalculateSpeciesNum();
+
 		isSimulating = true;
+	}
+
+	void CalculateSpeciesNum(){
+		numSpeciseLeft = new int[EvolutionSettings.instance.SpecieCount];
+		for(int i=0;i<allBirds.Count;i++){
+			numSpeciseLeft[allBirds[i].speciesID] ++;
+		}
 	}
 
 	void newRound(){
@@ -142,10 +171,20 @@ public class gameController : MonoBehaviour {
 
 	void setBirdStats(birdController bc){
 		bc.birdStats.vision = 0.0f;
+
+
+
 	}
 
 	// Update is called once per frame
 	void Update () {
+
+		speciesLeft = 0;
+		foreach(int i in numSpeciseLeft){
+			if(i > 0){
+				speciesLeft++;
+			}
+		}
 
 		Application.targetFrameRate = (int)framesPerSecond;
 

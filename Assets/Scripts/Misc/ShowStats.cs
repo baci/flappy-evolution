@@ -14,6 +14,6 @@ public class ShowStats : MonoBehaviour {
 	void Update () {
 		mesh.text = "Length "+(int)transform.position.x+"         FPS "+(int)(1/Time.deltaTime)+"\n"+
 			" Generation "+gameController.instance.generation+"\n"+
-				" Birds alive "+gameController.instance.birdsAlive+"/"+EvolutionSettings.instance.PopulationSize+"\n";
+				" Birds alive "+gameController.instance.birdsAlive+"/"+EvolutionSettings.instance.PopulationSize+"    Species Left "+gameController.instance.speciesLeft+"\n";
 	}
 }

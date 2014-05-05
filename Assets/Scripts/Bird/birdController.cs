@@ -8,6 +8,7 @@ public class birdController : MonoBehaviour {
 	public int points;
 
 	public int ID;
+	public int speciesID;
 
 	public bool dead;
 
@@ -140,6 +141,7 @@ public class birdController : MonoBehaviour {
 			dead = true;
 			birdStatistics.instance.BirdDied(points, transform.position.x,birdRuntime.numFlaps, ID);
 			vision.enabled = false;
+			gameController.instance.numSpeciseLeft[speciesID]--;
 			//gameController.instance.birdsAlive--;
 		}
 	}

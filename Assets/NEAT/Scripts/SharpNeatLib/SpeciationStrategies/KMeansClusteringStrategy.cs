@@ -331,8 +331,14 @@ namespace SharpNeat.SpeciationStrategies
             List<TGenome> genomeList = specie.GenomeList;
             int count = genomeList.Count;
             List<CoordinateVector> coordList = new List<CoordinateVector>(count);
+			TGenome lastGenome = genomeList[0];
             for(int i=0; i<count; i++) {
-                coordList.Add(genomeList[i].Position);
+				if(genomeList[i] != null){
+					coordList.Add(genomeList[i].Position);
+				}else{
+					coordList.Add(lastGenome.Position);
+				}
+				
             }
 
             // The centroid calculation is a function of the distance metric.
