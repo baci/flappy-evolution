@@ -41,8 +41,10 @@ public class gameController : MonoBehaviour {
 		}
 	}
 
-	[Range(0,100)]
-	public float timeScale = 1;
+	//[Range(0,1000)]
+	public float framesPerSecond = 30;
+
+	public float movementMulti = 1;
 
 	void Awake(){
 		instance = this;
@@ -50,7 +52,8 @@ public class gameController : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		Application.targetFrameRate = -1;
+		//Application.targetFrameRate = -1;
+		Application.targetFrameRate = 30;
 			
 		Physics2D.gravity = new Vector2(0,-gravity);
 
@@ -138,15 +141,14 @@ public class gameController : MonoBehaviour {
 	}
 
 	void setBirdStats(birdController bc){
-		bc.birdStats.vision = .2f;
-	}
-
-	void FixedUpdate(){
-		//Time.fixedDeltaTime = 1/timeScale;
+		bc.birdStats.vision = 0.0f;
 	}
 
 	// Update is called once per frame
 	void Update () {
+
+		Application.targetFrameRate = (int)framesPerSecond;
+
 		if(!isSimulating)return;
 
 		if(birdsAlive == 0){
@@ -160,5 +162,9 @@ public class gameController : MonoBehaviour {
 			//newRound();
 			//TODO: tell something that the generation is done
 		}
+	}
+
+	void OnGUI(){
+		framesPerSecond = GUI.HorizontalSlider(new Rect(0,0,250,500),framesPerSecond,0,1000);
 	}
 }

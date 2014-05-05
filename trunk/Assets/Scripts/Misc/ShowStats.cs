@@ -12,8 +12,8 @@ public class ShowStats : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		mesh.text = "Length "+(int)transform.position.x+"\n"+
+		mesh.text = "Length "+(int)transform.position.x+"         FPS "+(int)(1/Time.deltaTime)+"\n"+
 			" Generation "+gameController.instance.generation+"\n"+
-				" Birds alive "+gameController.instance.birdsAlive+"\n";
+				" Birds alive "+gameController.instance.birdsAlive+"/"+EvolutionSettings.instance.PopulationSize+"\n";
 	}
 }
