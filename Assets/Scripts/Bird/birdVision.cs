@@ -29,7 +29,7 @@ public class birdVision : MonoBehaviour {
 	}
 	
 	// Update is called once per frame
-	void FixedUpdate () {
+	void Update () {
 		float VA = BC.birdStats.vision;
 		if(gameController.instance.isSimulating){
 

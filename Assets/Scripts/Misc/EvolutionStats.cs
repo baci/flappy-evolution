@@ -19,11 +19,6 @@ public class EvolutionStats : MonoBehaviour {
 		lowLengths.Add(0);
 		avgLengths.Add(0);
 	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
 
 	public void AnalyzeStats(){
 		findTopLength();

@@ -63,9 +63,7 @@ public class birdController : MonoBehaviour {
 			//animation
 			//transform.right = velocity+new Vector2(10,0);
 		}
-	}
-
-	void FixedUpdate(){
+	
 		if(transform.position.x > gameController.instance.maxDistance){
 			SetDead();
 		}
@@ -73,9 +71,9 @@ public class birdController : MonoBehaviour {
 		//if(gameController.instance.isSimulating){
 			if(enabled){
 				pos = transform.position;
-				velocity.y -= gameController.instance.gravity;
+				velocity.y -= gameController.instance.gravity*gameController.instance.movementMulti;
 				if(!dead){
-					velocity.x = gameController.instance.forwardSpeed;
+					velocity.x = gameController.instance.forwardSpeed*gameController.instance.movementMulti;
 				}
 
 				pos += new Vector3(velocity.x,velocity.y,0);
@@ -108,7 +106,7 @@ public class birdController : MonoBehaviour {
 	public void Flap(float amount){
 		if(!dead && !hasFlapped){
 			timeSinceLastFlap = 0;
-			velocity = new Vector2(velocity.x,flapForce*(amount*2));
+			velocity = new Vector2(velocity.x,flapForce*(amount*2)*gameController.instance.movementMulti);
 			hasFlapped = true;
 			birdRuntime.numFlaps ++;
 		}else{

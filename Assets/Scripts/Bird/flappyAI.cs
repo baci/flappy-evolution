@@ -15,7 +15,7 @@ public class flappyAI : MonoBehaviour {
 
 
 	// Update is called once per frame
-	void FixedUpdate () {
+	void Update () {
 		if(gameController.instance.isSimulating && !BC.dead){
 			if(myBrain != null){
 				myBrain.ResetState();
