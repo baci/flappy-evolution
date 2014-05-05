@@ -104,6 +104,8 @@ where TGenome : class, IGenome<TGenome>  {
 
 		currentStatus = SimulationStatus.WAITING_TO_START;
 
+		Debug.LogWarning("current best species: " + _bestSpecieIdx);
+
 		// TODO: More checks.
 		//Debug.Assert(_genomeList.Count == _populationSize)
 	}
