@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class graphCreater : MonoBehaviour {
 
@@ -7,7 +8,13 @@ public class graphCreater : MonoBehaviour {
 
 	public LineRenderer[] graphs;
 
+	List<LineRenderer> speciesGraphs = new List<LineRenderer>();
+
+	public Material defaultMat;
+
 	public Vector2 graphSize;
+
+	public GameObject speciesParent;
 
 	public static graphCreater instance;
 	void Awake(){
@@ -18,12 +25,52 @@ public class graphCreater : MonoBehaviour {
 	void Start () {
 		ES = EvolutionStats.instance;
 	}
-	
+
+	public void CreateSpeciesGraphsGraphObjects(){
+		for(int i=0;i<EvolutionSettings.instance.SpecieCount;i++){
+			GameObject g = new GameObject();
+			g.layer = 10;
+			g.name = "speciesGraph"+i;
+
+			LineRenderer r= g.AddComponent<LineRenderer>();
+			r.SetWidth(0.03f,0.03f);
+			r.useWorldSpace = false;
+			g.renderer.material = defaultMat;
+			Color c = gameController.instance.birdMats[i].color;
+			c.a = 1;
+			g.renderer.material.color = c;
+			
+			g.transform.parent = speciesParent.transform;
+			g.transform.position = speciesParent.transform.position;
+			speciesGraphs.Add(r);
+		}
+	}
+
+	void speciesGraphsUpdate(){
+		float globalMax = 0;
+		for(int i=0;i<EvolutionSettings.instance.SpecieCount;i++){
+//			print(ES.speciesLengths.Count+"   "+i);
+			speciesGraphs[i].SetVertexCount(ES.speciesLengths[i].Count);
+		
+			float maxHeight = Mathf.Max(ES.speciesLengths[i].ToArray());
+			globalMax = Mathf.Max(maxHeight,globalMax);
+
+			//print("MULTI Y IS "+maxHeight);
+			float multiY = graphSize.y/globalMax;
+			float multiX = Mathf.Min(1, graphSize.x/ES.speciesLengths[i].Count);
+			
+			for(int j=0;j<ES.speciesLengths[i].Count;j++){
+				speciesGraphs[i].SetPosition(j,new Vector3(j*multiX,ES.speciesLengths[i][j]*multiY,0));
+			}
+		}
+	}
+
 	// Update is called once per frame
 	public void UpdateGraph () {
 		Grapth1();
 		Grapth2();
 		Grapth3();
+		speciesGraphsUpdate();
 	}
 
 	//best bird

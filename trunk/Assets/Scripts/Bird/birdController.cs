@@ -72,7 +72,7 @@ public class birdController : MonoBehaviour {
 		//if(gameController.instance.isSimulating){
 			if(enabled){
 				pos = transform.position;
-				velocity.y -= gameController.instance.gravity*gameController.instance.movementMulti;
+			velocity.y -= (gameController.instance.gravity*gameController.instance.movementMulti)*gameController.instance.movementMulti;
 				if(!dead){
 					velocity.x = gameController.instance.forwardSpeed*gameController.instance.movementMulti;
 				}
@@ -139,7 +139,7 @@ public class birdController : MonoBehaviour {
 		if(!dead){
 			velocity = new Vector2(velocity.x*Random.Range(-0.5f,-1.5f),velocity.y*Random.Range(-0.5f,-1.5f));
 			dead = true;
-			birdStatistics.instance.BirdDied(points, transform.position.x,birdRuntime.numFlaps, ID);
+			birdStatistics.instance.BirdDied(points, transform.position.x,birdRuntime.numFlaps, ID, speciesID);
 			vision.enabled = false;
 			gameController.instance.numSpeciseLeft[speciesID]--;
 			//gameController.instance.birdsAlive--;
