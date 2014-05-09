@@ -206,7 +206,6 @@
      <Compile Include="Assets\NEAT\Scripts\SharpNeatLib\Utility\Utilities.cs" />
      <Compile Include="Assets\NEAT\Scripts\SharpNeatLib\Utility\XmlIoUtils.cs" />
      <Compile Include="Assets\NEAT\Scripts\SharpNeatLib\Utility\ZigguratGaussianSampler.cs" />
-     <Compile Include="Assets\Scripts\Bezier.cs" />
      <Compile Include="Assets\Scripts\Bird\birdController.cs" />
      <Compile Include="Assets\Scripts\Bird\birdStatistics.cs" />
      <Compile Include="Assets\Scripts\Bird\birdVision.cs" />
@@ -214,6 +213,7 @@
      <Compile Include="Assets\Scripts\EvolutionSettings.cs" />
      <Compile Include="Assets\Scripts\Misc\EvolutionStats.cs" />
      <Compile Include="Assets\Scripts\Misc\ShowStats.cs" />
+     <Compile Include="Assets\Scripts\Misc\saveToFile.cs" />
      <Compile Include="Assets\Scripts\Visualization\graphCreater.cs" />
      <Compile Include="Assets\Scripts\cameraController.cs" />
      <Compile Include="Assets\Scripts\gameController.cs" />
@@ -221,6 +221,7 @@
      <Compile Include="Assets\Scripts\world\pipeController.cs" />
      <Compile Include="Assets\Scripts\world\pipeGenerator.cs" />
      <None Include="Assets\XMLAssets\xor-config.xml" />
+     <None Include="Assets\SavedData\myFirstTest.txt" />
  <Reference Include="SharpNeatDomains">
  <HintPath>Assets\Plugins\SharpNeatDomains.dll</HintPath>
  </Reference>

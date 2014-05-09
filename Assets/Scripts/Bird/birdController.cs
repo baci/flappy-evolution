@@ -1,5 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
 
 public class birdController : MonoBehaviour {
 
@@ -11,6 +13,7 @@ public class birdController : MonoBehaviour {
 	public int speciesID;
 
 	public bool dead;
+	public bool wait;
 
 	public bool enabled;
 
@@ -31,6 +34,21 @@ public class birdController : MonoBehaviour {
 
 	public float timeSinceLastFlap;
 
+	public int numLives;
+
+	public class GenerationStats{
+		public List<float> Scores = new List<float>();
+		public List<float> Distances = new List<float>();
+		public List<int> NumFlaps = new List<int>();
+
+		public void Setup(int numRounds){
+			Scores.Clear();
+			Distances.Clear();
+			NumFlaps.Clear();
+		}
+	}
+
+	public GenerationStats generationStats;
 
 	public BirdStats birdStats = new BirdStats();
 	public class BirdStats{
@@ -73,7 +91,7 @@ public class birdController : MonoBehaviour {
 			if(enabled){
 				pos = transform.position;
 			velocity.y -= (gameController.instance.gravity*gameController.instance.movementMulti)*gameController.instance.movementMulti;
-				if(!dead){
+				if(!dead && !wait){
 					velocity.x = gameController.instance.forwardSpeed*gameController.instance.movementMulti;
 				}
 
@@ -81,7 +99,7 @@ public class birdController : MonoBehaviour {
 				transform.position = pos;
 
 				col = Physics2D.OverlapArea(new Vector2(transform.position.x+0.5f,transform.position.y+0.5f),new Vector2(transform.position.x-0.5f,transform.position.y-0.5f),mask);
-				if(!dead){
+				if(!dead && !wait){
 					if(col){
 						if(col.tag == "PointTrigger"){
 							if(prevPoint != col.gameObject){
@@ -105,7 +123,7 @@ public class birdController : MonoBehaviour {
 	}
 
 	public void Flap(float amount){
-		if(!dead && !hasFlapped){
+		if(!dead && !hasFlapped && !wait){
 			timeSinceLastFlap = 0;
 			velocity = new Vector2(velocity.x,flapForce*(amount*2)*gameController.instance.movementMulti);
 			hasFlapped = true;
@@ -118,7 +136,14 @@ public class birdController : MonoBehaviour {
 	
 
 	void destroyMe(){
-		gameController.instance.birdsAlive--;
+		if(dead){
+			gameController.instance.birdsAlive--;
+
+		}else if(wait){
+
+			gameController.instance.birdsActive--;
+		}
+
 		enabled = false;
 	}
 
@@ -135,15 +160,54 @@ public class birdController : MonoBehaviour {
 	}
 	*/
 
+	public void birdReset(){
+
+	}
+
 	public void SetDead(){
-		if(!dead){
-			velocity = new Vector2(velocity.x*Random.Range(-0.5f,-1.5f),velocity.y*Random.Range(-0.5f,-1.5f));
-			dead = true;
-			birdStatistics.instance.BirdDied(points, transform.position.x,birdRuntime.numFlaps, ID, speciesID);
-			vision.enabled = false;
-			gameController.instance.numSpeciseLeft[speciesID]--;
-			//gameController.instance.birdsAlive--;
+		if(numLives == 0){
+			if(!dead){
+				//print("DEAD");
+				velocity = new Vector2(velocity.x*Random.Range(-0.5f,-1.5f),velocity.y*Random.Range(-0.5f,-1.5f));
+				dead = true;
+
+				//calculate avg to send
+
+				generationStats.Scores.Add (points);
+				generationStats.Distances.Add(transform.position.x);
+				generationStats.NumFlaps.Add(birdRuntime.numFlaps);
+
+				float aPoints = (float)generationStats.Scores.Average();
+				float aDistances = (float)generationStats.Distances.Average();
+				int aNumFlaps = (int)generationStats.NumFlaps.Average();
+
+				birdStatistics.instance.BirdDied(aPoints, aDistances,aNumFlaps, ID, speciesID);
+				vision.enabled = false;
+				gameController.instance.numSpeciseLeft[speciesID]--;
+				//gameController.instance.birdsAlive--;
+			}
+		}else{
+			if(!wait){
+				//print("WAIT");
+
+				velocity = new Vector2(velocity.x*Random.Range(-0.5f,-1.5f),velocity.y*Random.Range(-0.5f,-1.5f));
+				wait = true;
+				numLives --;
+
+				gameController.instance.numSpeciseLeft[speciesID]--;
+
+				generationStats.Scores.Add (points);
+				generationStats.Distances.Add(transform.position.x);
+				generationStats.NumFlaps.Add(birdRuntime.numFlaps);
+
+				vision.enabled = false;
+
+
+			}
+
 		}
+
+
 	}
 	
 	

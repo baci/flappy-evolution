@@ -434,7 +434,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11400006, guid: fdc0b699e78e82143a123e0732e4503d, type: 2}
       propertyPath: SpecieCount
-      value: 5
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 11400006, guid: fdc0b699e78e82143a123e0732e4503d, type: 2}
       propertyPath: PopulationSize
@@ -446,7 +446,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11400000, guid: fdc0b699e78e82143a123e0732e4503d, type: 2}
       propertyPath: framesPerSecond
-      value: 0
+      value: 60
       objectReference: {fileID: 0}
     - target: {fileID: 11400002, guid: fdc0b699e78e82143a123e0732e4503d, type: 2}
       propertyPath: minGapSize
@@ -459,6 +459,10 @@ Prefab:
     - target: {fileID: 11400002, guid: fdc0b699e78e82143a123e0732e4503d, type: 2}
       propertyPath: pipeDistance
       value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400006, guid: fdc0b699e78e82143a123e0732e4503d, type: 2}
+      propertyPath: RoundPerGeneration
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: fdc0b699e78e82143a123e0732e4503d, type: 2}
@@ -608,6 +612,7 @@ MonoBehaviour:
   spawnDistanceArea: 5
   birdPre: {fileID: 100000, guid: ce7d29378c849af42861f369e70e653b, type: 2}
   birdsAlive: 0
+  birdsActive: 0
   maxDistance: 200
   allBirds: []
   defaultMat: {fileID: 2100000, guid: 65a45ec9a04f82142a1add6754a3015a, type: 2}
@@ -616,7 +621,7 @@ MonoBehaviour:
   numSpeciseLeft: 
   speciesLeft: 0
   _isSimulating: 0
-  framesPerSecond: 0
+  framesPerSecond: 60
   movementMulti: 1
 --- !u!4 &1490058581
 Transform:
@@ -677,7 +682,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PopulationSize: 1000
-  SpecieCount: 5
+  SpecieCount: 10
   ComplexityRegulationStrategy: 3
   ComplexityThreshold: 33
   description: 
@@ -686,6 +691,7 @@ MonoBehaviour:
     iters: 2
     threshold: 0
     maxIters: 0
+  RoundPerGeneration: 3
   numInputs: 10
   numOutputs: 1
 --- !u!114 &1490058585
