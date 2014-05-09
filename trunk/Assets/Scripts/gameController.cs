@@ -14,6 +14,8 @@ public class gameController : MonoBehaviour {
 
 	public int generation = 0;
 
+	public int round = 0;
+
 	//public int numBirds;
 
 	public float spawnDistanceArea;
@@ -21,6 +23,7 @@ public class gameController : MonoBehaviour {
 	public GameObject birdPre;
 
 	public int birdsAlive;
+	public int birdsActive;
 
 	public float maxDistance;
 
@@ -84,6 +87,8 @@ public class gameController : MonoBehaviour {
 			g.transform.parent = birdHolder.transform;
 			birdController bc = g.GetComponent<birdController>();
 			bc.ID = i;
+
+
 			setBirdStats(bc);
 			allBirds.Add(bc);
 		}
@@ -112,6 +117,9 @@ public class gameController : MonoBehaviour {
 				allBirds[i].AI.myBrain = allBrains[i];
 				allBirds[i].AI.myBrain.BrainID = i;
 				allBirds[i].speciesID = allGenomes[i].SpecieIdx;
+				allBirds[i].numLives = EvolutionSettings.instance.RoundPerGeneration;
+				allBirds[i].generationStats = new birdController.GenerationStats();
+				allBirds[i].generationStats.Setup(EvolutionSettings.instance.RoundPerGeneration);
 				(genomeList[i].CachedPhenome as IBlackBox).BrainID = i;
 	//			print("Setting brain ID "+i);
 				if(allBrains[i]== null){
@@ -140,6 +148,7 @@ public class gameController : MonoBehaviour {
 
 	void newRound(){
 		generation++;
+		round = 0;
 		print("starting generation "+generation);
 
 
@@ -152,12 +161,31 @@ public class gameController : MonoBehaviour {
 
 		birdStatistics.instance.Clear();
 		birdsAlive = EvolutionSettings.instance.PopulationSize;
+		birdsActive = birdsAlive;
 
 		foreach(birdController bc in allBirds){
 			ResetBird(bc);
 			setBirdStats(bc);
 		}
 
+	}
+
+	void rerunRound(){
+		round ++;
+		Vector3 camPos = Camera.main.transform.position;
+		camPos.x = 0;
+		Camera.main.transform.position = camPos;
+
+		pipeGenerator.instance.Clear();
+		pipeGenerator.instance.GenerateStart();
+
+		birdsActive = birdsAlive;
+
+		foreach(birdController bc in allBirds){
+			ResetBird(bc);
+		}
+
+		CalculateSpeciesNum();
 	}
 
 	void ResetBird(birdController bc){
@@ -167,6 +195,7 @@ public class gameController : MonoBehaviour {
 		float xStart = 0;
 		bc.transform.position = new Vector3(xStart,0,0);
 		bc.dead = false;
+		bc.wait = false;
 		bc.velocity *= 0;
 		bc.points = 0;
 		bc.enabled = true;
@@ -176,9 +205,8 @@ public class gameController : MonoBehaviour {
 
 	void setBirdStats(birdController bc){
 		bc.birdStats.vision = 0.0f;
-
-
-
+		bc.generationStats = new birdController.GenerationStats();
+		bc.generationStats.Setup(EvolutionSettings.instance.RoundPerGeneration);
 	}
 
 	// Update is called once per frame
@@ -205,6 +233,8 @@ public class gameController : MonoBehaviour {
 			print("All birds are dead, end of simulation");
 			//newRound();
 			//TODO: tell something that the generation is done
+		}else if(birdsActive == 0){
+			rerunRound();
 		}
 	}
 

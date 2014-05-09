@@ -12,6 +12,8 @@ public class EvolutionSettings : MonoBehaviour {
 	public string description;
 	public ActivationScheme activationScheme;
 
+	public int RoundPerGeneration;
+
 	[System.Serializable]
 	public class ActivationScheme
 	{
@@ -34,6 +36,7 @@ public class EvolutionSettings : MonoBehaviour {
 		SpecieCount = Mathf.Min(SpecieCount,PopulationSize);
 		SpecieCount = Mathf.Max(SpecieCount,1);
 		PopulationSize = Mathf.Max(PopulationSize,1);
+		RoundPerGeneration = Mathf.Max (0,RoundPerGeneration);
 		//print((numInputs+numOutputs)*3);
 	}
 }
