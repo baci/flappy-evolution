@@ -10,6 +10,22 @@ public class EvolutionStats : MonoBehaviour {
 
 	public List<List<float>> speciesLengths = new List<List<float>>();
 
+	public List<generation> data = new List<generation>();
+
+	[System.Serializable]
+	public class generation{
+		public List<bird> bird = new List<bird>();
+	}
+
+	[System.Serializable]
+	public class bird{
+		//public float Scores;
+		public float Distances;
+		public float NumFlaps;
+		public float Fitness;
+		//public float speciesBestFitness;
+	}
+
 	public static EvolutionStats instance;
 	void Awake(){
 		instance = this;
@@ -62,5 +78,19 @@ public class EvolutionStats : MonoBehaviour {
 			sum += birdStatistics.instance.Distances[i];
 		}
 		avgLengths.Add(sum / birdStatistics.instance.Distances.Length);
+	}
+
+	public void saveData(){
+		generation g = new generation();
+		for(int i=0;i<birdStatistics.instance.Distances.Length;i++){
+			bird b = new bird();
+			b.Distances = birdStatistics.instance.Distances[i];
+			b.Fitness = birdStatistics.instance.Fitness[i];
+			b.NumFlaps = birdStatistics.instance.NumFlaps[i];
+			//b.Scores = birdStatistics.instance.Scores[i];
+			g.bird.Add(b);
+		}
+		data.Add(g);
+
 	}
 }

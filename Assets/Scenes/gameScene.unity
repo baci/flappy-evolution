@@ -404,6 +404,14 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 11400008, guid: fdc0b699e78e82143a123e0732e4503d, type: 2}
+      propertyPath: data.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400008, guid: fdc0b699e78e82143a123e0732e4503d, type: 2}
+      propertyPath: data.Array.data[0].round.Array.size
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: fdc0b699e78e82143a123e0732e4503d, type: 2}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -434,11 +442,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11400006, guid: fdc0b699e78e82143a123e0732e4503d, type: 2}
       propertyPath: SpecieCount
-      value: 10
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 11400006, guid: fdc0b699e78e82143a123e0732e4503d, type: 2}
       propertyPath: PopulationSize
-      value: 1000
+      value: 999
       objectReference: {fileID: 0}
     - target: {fileID: 11400000, guid: fdc0b699e78e82143a123e0732e4503d, type: 2}
       propertyPath: movementMulti
@@ -462,7 +470,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11400006, guid: fdc0b699e78e82143a123e0732e4503d, type: 2}
       propertyPath: RoundPerGeneration
-      value: 3
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: fdc0b699e78e82143a123e0732e4503d, type: 2}
@@ -609,6 +617,7 @@ MonoBehaviour:
   gravity: .0199999996
   forwardSpeed: .0799999982
   generation: 0
+  round: 0
   spawnDistanceArea: 5
   birdPre: {fileID: 100000, guid: ce7d29378c849af42861f369e70e653b, type: 2}
   birdsAlive: 0
@@ -681,8 +690,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31ee5d4ae328c6744a01bb022401c893, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PopulationSize: 1000
-  SpecieCount: 10
+  PopulationSize: 999
+  SpecieCount: 9
   ComplexityRegulationStrategy: 3
   ComplexityThreshold: 33
   description: 
@@ -691,7 +700,7 @@ MonoBehaviour:
     iters: 2
     threshold: 0
     maxIters: 0
-  RoundPerGeneration: 3
+  RoundPerGeneration: 1
   numInputs: 10
   numOutputs: 1
 --- !u!114 &1490058585
@@ -709,6 +718,7 @@ MonoBehaviour:
   topLengths: []
   lowLengths: []
   avgLengths: []
+  data: []
 --- !u!1 &1564450139
 GameObject:
   m_ObjectHideFlags: 0

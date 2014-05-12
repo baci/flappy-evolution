@@ -159,6 +159,8 @@ public class gameController : MonoBehaviour {
 		pipeGenerator.instance.Clear();
 		pipeGenerator.instance.GenerateStart();
 
+		EvolutionStats.instance.saveData();
+
 		birdStatistics.instance.Clear();
 		birdsAlive = EvolutionSettings.instance.PopulationSize;
 		birdsActive = birdsAlive;
