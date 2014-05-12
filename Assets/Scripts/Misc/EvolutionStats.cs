@@ -18,8 +18,12 @@ public class EvolutionStats : MonoBehaviour {
 
 	[System.Serializable]
 	public class generation{
+
+		public int generationNum;
+
 		[XmlArray("Birds")]
 		[XmlArrayItem("BirdElem")]
+
 		public List<bird> bird = new List<bird>();
 	}
 
@@ -30,11 +34,15 @@ public class EvolutionStats : MonoBehaviour {
 		//public float NumFlaps;
 
 		public int speciesID;
-
+		public int birdID;
 		public float Fitness;
+
+
+		public List<int> RoundNum = new List<int>();
 
 		[XmlArray("NumFlaps")]
 		[XmlArrayItem("NumFlapElem")]
+
 		public List<int> NumFlaps = new List<int>();
 
 		[XmlArray("Distances")]
@@ -104,13 +112,18 @@ public class EvolutionStats : MonoBehaviour {
 
 	public void saveData(){
 		generation g = new generation();
+		g.generationNum = gameController.instance.generation;
 		for(int i=0;i<birdStatistics.instance.Distances.Length;i++){
 			bird b = new bird();
 			//b.Distances = birdStatistics.instance.Distances[i];
 			b.Fitness = birdStatistics.instance.Fitness[i];
 			b.NumFlaps = gameController.instance.allBirds[i].generationStats.NumFlaps;
 			b.Distances = gameController.instance.allBirds[i].generationStats.Distances;
+			for(int j=0;j<b.Distances.Count;j++){
+				b.RoundNum.Add(j);
+			}
 			b.speciesID = gameController.instance.allBirds[i].speciesID;
+			b.birdID = i;
 			//b.Scores = birdStatistics.instance.Scores[i];
 			g.bird.Add(b);
 		}
