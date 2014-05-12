@@ -138,6 +138,7 @@ public class birdController : MonoBehaviour {
 	void destroyMe(){
 		if(dead){
 			gameController.instance.birdsAlive--;
+			gameController.instance.birdsActive--;
 
 		}else if(wait){
 

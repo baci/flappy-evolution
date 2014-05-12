@@ -36,7 +36,11 @@ public class birdStatistics : MonoBehaviour {
 		}
 	}
 
+
+
 	public void Clear(){
+
+
 		Scores = new float[Scores.Length];
 		Distances = new float[Distances.Length];
 		NumFlaps = new int[NumFlaps.Length];
