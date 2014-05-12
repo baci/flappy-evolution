@@ -37,7 +37,8 @@ public class EvolutionStats : MonoBehaviour {
 		public int birdID;
 		public float Fitness;
 
-
+		[XmlArray("RoundNums")]
+		[XmlArrayItem("RoundNumElem")]
 		public List<int> RoundNum = new List<int>();
 
 		[XmlArray("NumFlaps")]
@@ -58,7 +59,7 @@ public class EvolutionStats : MonoBehaviour {
 
 	private void OnApplicationQuit()
 	{
-		data.SaveToFile(Path.Combine(Application.persistentDataPath, "generationData.xml"));
+		data.SaveToFile(Path.Combine(Application.persistentDataPath, "generationData-" + System.DateTime.Now.Ticks + ".xml"));
 	}
 
 	// Use this for initialization
