@@ -20,9 +20,15 @@ public class EvolutionStats : MonoBehaviour {
 	[System.Serializable]
 	public class bird{
 		//public float Scores;
-		public float Distances;
-		public float NumFlaps;
+		//public float Distances;
+		//public float NumFlaps;
+
+		public int speciesID;
+
 		public float Fitness;
+
+		public List<int> NumFlaps = new List<int>();
+		public List<float> Distances = new List<float>();
 		//public float speciesBestFitness;
 	}
 
@@ -84,9 +90,11 @@ public class EvolutionStats : MonoBehaviour {
 		generation g = new generation();
 		for(int i=0;i<birdStatistics.instance.Distances.Length;i++){
 			bird b = new bird();
-			b.Distances = birdStatistics.instance.Distances[i];
+			//b.Distances = birdStatistics.instance.Distances[i];
 			b.Fitness = birdStatistics.instance.Fitness[i];
-			b.NumFlaps = birdStatistics.instance.NumFlaps[i];
+			b.NumFlaps = gameController.instance.allBirds[i].generationStats.NumFlaps;
+			b.Distances = gameController.instance.allBirds[i].generationStats.Distances;
+			b.speciesID = gameController.instance.allBirds[i].speciesID;
 			//b.Scores = birdStatistics.instance.Scores[i];
 			g.bird.Add(b);
 		}
