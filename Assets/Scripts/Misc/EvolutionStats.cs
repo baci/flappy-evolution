@@ -1,6 +1,9 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
+using System.Xml;
+using System.Xml.Serialization;
 
 public class EvolutionStats : MonoBehaviour {
 
@@ -10,10 +13,13 @@ public class EvolutionStats : MonoBehaviour {
 
 	public List<List<float>> speciesLengths = new List<List<float>>();
 
-	public List<generation> data = new List<generation>();
+	public GenerationData data = new GenerationData();
+
 
 	[System.Serializable]
 	public class generation{
+		[XmlArray("Birds")]
+		[XmlArrayItem("BirdElem")]
 		public List<bird> bird = new List<bird>();
 	}
 
@@ -27,7 +33,12 @@ public class EvolutionStats : MonoBehaviour {
 
 		public float Fitness;
 
+		[XmlArray("NumFlaps")]
+		[XmlArrayItem("NumFlapElem")]
 		public List<int> NumFlaps = new List<int>();
+
+		[XmlArray("Distances")]
+		[XmlArrayItem("DistanceElem")]
 		public List<float> Distances = new List<float>();
 		//public float speciesBestFitness;
 	}
@@ -35,6 +46,11 @@ public class EvolutionStats : MonoBehaviour {
 	public static EvolutionStats instance;
 	void Awake(){
 		instance = this;
+	}
+
+	private void OnApplicationQuit()
+	{
+		data.SaveToFile(Path.Combine(Application.persistentDataPath, "generationData.xml"));
 	}
 
 	// Use this for initialization
@@ -98,7 +114,7 @@ public class EvolutionStats : MonoBehaviour {
 			//b.Scores = birdStatistics.instance.Scores[i];
 			g.bird.Add(b);
 		}
-		data.Add(g);
+		data.data.Add(g);
 
 	}
 }
