@@ -59,7 +59,7 @@ public class EvolutionStats : MonoBehaviour {
 
 	private void OnApplicationQuit()
 	{
-		data.SaveToFile(Path.Combine(Application.persistentDataPath, "generationData-" + System.DateTime.Now.Ticks + ".xml"));
+		data.SaveToFile(Path.Combine(Application.dataPath+"/savedData", "generationData-" + System.DateTime.Now.Ticks + ".xml"));
 	}
 
 	// Use this for initialization
@@ -129,6 +129,7 @@ public class EvolutionStats : MonoBehaviour {
 			g.bird.Add(b);
 		}
 		data.data.Add(g);
+		//data.evolutionSettings = EvolutionSettings.instance;
 
 	}
 }

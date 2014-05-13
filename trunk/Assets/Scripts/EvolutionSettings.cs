@@ -2,6 +2,7 @@
 using System.Collections;
 
 [ExecuteInEditMode]
+[System.Serializable]
 public class EvolutionSettings : MonoBehaviour {
 
 
