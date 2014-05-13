@@ -221,7 +221,14 @@
      <Compile Include="Assets\Scripts\world\PipeGap.cs" />
      <Compile Include="Assets\Scripts\world\pipeController.cs" />
      <Compile Include="Assets\Scripts\world\pipeGenerator.cs" />
+     <None Include="Assets\SavedData\Experiment_1_1Round_2.xml" />
+     <None Include="Assets\SavedData\Experiment_1_1Round_4.xml" />
+     <None Include="Assets\SavedData\Experiment_1_2Round_1.xml" />
      <None Include="Assets\XMLAssets\xor-config.xml" />
+     <None Include="Assets\SavedData\Experiment_1_2Round_2.xml.xml" />
+     <None Include="Assets\SavedData\Experiment_1_1Round_3.xml" />
+     <None Include="Assets\SavedData\Experiment_1_1Round_1.xml" />
+     <None Include="Assets\SavedData\Experiment_1_1Round_5.xml" />
  <Reference Include="SharpNeatDomains">
  <HintPath>Assets\Plugins\SharpNeatDomains.dll</HintPath>
  </Reference>
