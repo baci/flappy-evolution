@@ -45,17 +45,20 @@ MonoBehaviour:
   gravity: .0199999996
   forwardSpeed: .0799999982
   generation: 0
+  round: 0
   spawnDistanceArea: 5
   birdPre: {fileID: 100000, guid: ce7d29378c849af42861f369e70e653b, type: 2}
   birdsAlive: 0
+  birdsActive: 0
   maxDistance: 200
   allBirds: []
   defaultMat: {fileID: 2100000, guid: 65a45ec9a04f82142a1add6754a3015a, type: 2}
   birdMats: []
+  initNumSpeciseLeft: 
   numSpeciseLeft: 
   speciesLeft: 0
   _isSimulating: 0
-  framesPerSecond: 60
+  framesPerSecond: 0
   movementMulti: 1
 --- !u!114 &11400002
 MonoBehaviour:
@@ -70,10 +73,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pipePre: {fileID: 100002, guid: 970c7323efdafd745854d21034d3b11c, type: 2}
   closestGap: {fileID: 0}
-  pipeDistance: 4
+  pipeDistance: 5
   gapSize: 6
-  gapSizeDecrease: .0399999991
-  minGapSize: 2
+  gapSizeDecrease: .0350000001
+  minGapSize: 2.5
 --- !u!114 &11400004
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -89,6 +92,7 @@ MonoBehaviour:
   Distances: []
   NumFlaps: 
   Fitness: []
+  speciesBestFitness: []
 --- !u!114 &11400006
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -100,8 +104,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31ee5d4ae328c6744a01bb022401c893, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PopulationSize: 1999
-  SpecieCount: 10
+  PopulationSize: 999
+  SpecieCount: 9
   ComplexityRegulationStrategy: 3
   ComplexityThreshold: 33
   description: 
@@ -110,6 +114,7 @@ MonoBehaviour:
     iters: 2
     threshold: 0
     maxIters: 0
+  RoundPerGeneration: 0
   numInputs: 10
   numOutputs: 1
 --- !u!114 &11400008
