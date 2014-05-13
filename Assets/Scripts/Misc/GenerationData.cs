@@ -12,9 +12,11 @@ public class GenerationData
 	[XmlArrayItem("Generation")]
 	public List<EvolutionStats.generation> data;
 
+	//public EvolutionSettings evolutionSettings;
 
 	public GenerationData()
 	{
+		//evolutionSettings = EvolutionSettings.instance;
 		data = new List<EvolutionStats.generation>();
 	}
 

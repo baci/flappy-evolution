@@ -222,7 +222,6 @@
      <Compile Include="Assets\Scripts\world\pipeController.cs" />
      <Compile Include="Assets\Scripts\world\pipeGenerator.cs" />
      <None Include="Assets\XMLAssets\xor-config.xml" />
-     <None Include="Assets\SavedData\myFirstTest.txt" />
  <Reference Include="SharpNeatDomains">
  <HintPath>Assets\Plugins\SharpNeatDomains.dll</HintPath>
  </Reference>
